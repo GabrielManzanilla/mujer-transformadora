@@ -1,0 +1,6 @@
+# /public/.htaccess
+RewriteEngine On
+
+# Redirigir todo a /app/views/index.php
+RewriteCond %{REQUEST_URI} !^/public/ [NC]
+RewriteRule ^(.*)$ /app/views/pages/index.php [L]

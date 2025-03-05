@@ -20,4 +20,4 @@ Options -Indexes
 </FilesMatch>
 
 RewriteEngine On
-RewriteRule ^$ public/ [L]
+RewriteRule ^$ app/ [L]
