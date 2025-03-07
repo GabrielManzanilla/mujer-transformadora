@@ -225,8 +225,8 @@
 						<button type="button" class="btn btn-primary mt-2">Añadir</button>
 					</div>
 					<h5 for="direcciones">Otros Medios Digitales</h5>
-						<div class="mb-3 w-100 border rounded p-2 pt-3">
-							<table class="table table-hover">
+					<div class="mb-3 w-100 border rounded p-2 pt-3">
+						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th scope="col">Medio Digital</th>
@@ -240,16 +240,83 @@
 								</tr>
 							</tbody>
 						</table>
-						</div>
+					</div>
 				</fieldset>
-				<div class="mb-3 form-check">
-					<input type="checkbox" class="form-check-input" id="exampleCheck1">
-					<label class="form-check-label" for="exampleCheck1">Check me out</label>
-				</div>
+				<hr>
+				<fieldset class="">
+					<legend>Subida de Archivos</legend>
+					<div class="mb-3">
+						<label for="ine_file" class="form-label">INE</label> 
+						<div class="input-group">
+							<input type="file" class="form-control" id="ine_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="acta_nacimiento_file" class="form-label">Acta de Nacimiento</label> 
+						<div class="input-group">
+							<input type="file" class="form-control" id="acta_nacimiento_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="acta_nacimiento_file">Button</button>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="comprobante_domicilio_file" class="form-label">Comprobante de Domicilio</label> 
+						<div class="input-group">
+							<input type="file" class="form-control" id="comprobante_domicilio_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="comprobante_domicilio_file">Button</button>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="cif_file" class="form-label">Constancia de Situacion Fiscal (CIF)</label> 
+						<div class="input-group">
+							<input type="file" class="form-control" id="cif_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="cif_file">Button</button>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="affy_file" class="form-label">Registro AFFY</label> 
+						<div class="input-group">
+							<input type="file" class="form-control" id="affy_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="affy_file">Button</button>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="impi_file" class="form-label">Registro IMPI</label> 
+						<div class="input-group">
+							<input type="file" class="form-control" id="impi_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="impi_file">Button</button>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="impi_file" class="form-label">Registro IMPI</label> 
+						<div class="input-group">
+							<input type="file" class="form-control" id="impi_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="impi_file">Button</button>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="imss_file" class="form-label">Registro IMSS</label> 
+						<div class="input-group">
+							<input type="file" class="form-control" id="imss_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="imss_file">Button</button>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="registro_adicional_file" class="form-label">Registros Adicionales</label> 
+						<div class="input-group">
+							<input type="text" name="registro_adicional" id="registro_adicional" class="form-control" placeholder="Nombre del registro">
+							<input type="file" class="form-control" id="registro_adicional_file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+							<button class="btn btn-outline-secondary" type="button" id="imss_file">Button</button>
+						</div>
+					</div>
+					<h5 for="direcciones">Otros Medios Digitales</h5>
+					<div class="mb-3 w-100 border rounded p-2 pt-3">
+							<label for="registro_adicional_file" class="form-label">Entidad Registro</label>
+					</div>
+				</fieldset>
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
-
 	</main>
 </body>
 </html>
