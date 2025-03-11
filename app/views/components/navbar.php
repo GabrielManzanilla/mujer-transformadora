@@ -15,16 +15,16 @@
       <div class="sidebar offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+            <a class="nav-link active" aria-current="page" href="index">Home</a>
           </li>
 					<li class="nav-item">
-            <a class="nav-link " href="news.php">Noticias</a>
+            <a class="nav-link " href="news">Noticias</a>
           </li>
 					<li class="nav-item">
-						<a class="nav-link " href="register.php" >Registarse</a>
+						<a class="nav-link " href="register" >Registarse</a>
 					</li>
           <li class="nav-item">
-            <a class="nav-link" href="search.php">Buscar solicitud</a>
+            <a class="nav-link" href="search">Buscar solicitud</a>
           </li>
       </div>
     </div>

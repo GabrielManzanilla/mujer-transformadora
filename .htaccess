@@ -1,23 +1,6 @@
-# Denegar acceso a ciertos archivos
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
+RewriteEngine on
 
-# Redirigir todo a index.php (para un enrutador frontal)
-RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]
 
-# Prevenir acceso a directorios
-Options -Indexes
-
-# Proteger archivos sensibles
-<FilesMatch "^(config\.php|\.env)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-
-RewriteEngine On
-RewriteRule ^$ app/ [L]
