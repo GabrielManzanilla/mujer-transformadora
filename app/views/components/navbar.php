@@ -37,11 +37,14 @@
 		// Selecciona todos los enlaces del navbar
 		const navLinks = document.querySelectorAll(".nav-link");
 
-		const activePage=localStorage.getItem('activePage');
-		if(activePage){
-			navLinks.forEach((link) => link.classList.remove("active"));
-			document.querySelector(`a[href="${activePage}"]`).classList.add("active");
-		}
+    const activePage=localStorage.getItem('activePage');
+    if(activePage){
+      navLinks.forEach((link) => link.classList.remove("active"));
+      const activeLink = document.querySelector(`a[href="${activePage}"]`);
+      if (activeLink) {
+        activeLink.classList.add("active");
+      }
+    }
 
 		navLinks.forEach((link) => {
 			link.addEventListener("click", function () {

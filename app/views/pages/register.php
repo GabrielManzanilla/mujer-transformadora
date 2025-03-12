@@ -31,10 +31,10 @@
 					<div class="mb-3">
 						<label for="curp_usuario" class="form-label">CURP</label>
 						<div class="input-group">
-							<input type="text" class="form-control" id="curp_usuario" aria-describedby="emailHelp">
-							<button type="button" class="btn btn-outline-secondary" onclick="buscarPorCurp()">Buscar</button>
+							<input type="text" class="form-control" id="curp_usuario" aria-describedby="curplHelp">
+							<button type="button" class="btn btn-outline-secondary" id="search_curp_btn">Buscar</button>
 						</div>
-						<div id="emailHelp" class="form-text">Proporcione el curp para realizar la busqueda</div>
+						<div id="curpHelp" class="form-text">Proporcione el curp para realizar la busqueda</div>
 					</div>
 					<div class="mb-3 wrapper">
 						<label for="apellido_paterno" class="form-label">Nombre Completo</label>
@@ -47,20 +47,18 @@
 					<div class="mb-3">
 						<label for="fecha_nacimiento_usuario">Lugar de Nacimiento</label>
 						<div class="input-group">
-							<select class="form-select" aria-label="Default select example">
-								<option selected>Estado</option>
-							</select>
-							<select class="form-select" aria-label="Default select example">
+							<select class="form-select" id="municipio_nacimiento_usuario" aria-label="Default select example">
 								<option selected>Municipio</option>
 							</select>
-							<select class="form-select" aria-label="Default select example">
-								<option selected>Localidad</option>
+							<select class="form-select" id="entidad_nacimiento_usuario" aria-label="Default select example">
+								<option selected>Estado</option>
 							</select>
+							<input class="form-control" type="date" name="fecha_nacimiento_usuario" id="fecha_nacimiento_usuario">
 						</div>
 					</div>
 					<div class="mb-3">
 						<label for="sexo_usuario">Seleccione su Sexo</label>
-						<select class="form-select" aria-label="Default select example">
+						<select class="form-select" id="sexo_usuario" aria-label="Default select example">
 							<option selected>Sexo</option>
 							<option value="Mujer">Mujer</option>
 							<option value="Hombre">Hombre</option>
@@ -76,29 +74,29 @@
 					<legend class="form-label">Domicilio(s)</legend>
 						<div class="mb-3">
 							<div class="mb-3">
-								<label for="curp_usuario" class="form-label">Codigo Postal</label>
+								<label for="codigo_postal_usuario" class="form-label">Codigo Postal</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="curp_usuario" aria-describedby="emailHelp">
-									<button type="button" class="btn btn-outline-secondary" onclick="buscarPorCodigoPostal()">Buscar</button>
+									<input type="text" class="form-control" id="codigo_postal" aria-describedby="emailHelp">
+									<button type="button" class="btn btn-outline-secondary" id="search_cp_btn">Buscar</button>
 								</div>
 							</div>
 							<div class="input-group">
 								<input type="text" class="form-control" id="direccion_usuario" placeholder="Calle, Numero y Cruzamientos">
-								<select class="form-select" aria-label="Default select example">
+								<select class="form-select" id="estado_usuario" aria-label="Default select example">
 									<option selected>Estado</option>
 								</select>
-								<select class="form-select" aria-label="Default select example">
+								<select class="form-select" id="municipio_usuario" aria-label="Default select example">
 									<option selected>Municipio</option>
 								</select>
-								<select class="form-select" aria-label="Default select example">
+								<select class="form-select" id="localidad_usuario" aria-label="Default select example">
 									<option selected>Localidad</option>
 								</select>
-								<button type="button" class="btn btn-outline-primary">Añadir</button>
+								<button type="button" class="btn btn-outline-primary" id="add_address">Añadir</button>
 							</div>
 						</div>
 						<h5 for="direcciones">Direcciones</h5>
 						<div class="mb-3 w-100 border rounded p-2 pt-3">
-							<table class="table table-hover">
+							<table class="table table-hover" id="address_table">
 								<thead>
 									<tr>
 										<th scope="col">Direccion</th>
@@ -108,11 +106,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>C ## ### x## ## </td>
-										<td>Colonia Ejemplo</td>
-										<td>Merida</td>
-										<td>Yucatan</td>
+									<tr id="fila_mensaje" >
+										<td colspan="4">No hay direcciones agregadas</td>
 									</tr>
 								</tbody>
 							</table>
@@ -406,5 +401,5 @@
 		</div>
 	</main>
 </body>
-<script src="\mujer-transformadora\public\js\register.js"></script>
+<script src="\mujer-transformadora\public\js\register\main.js" type="module"></script>
 </html>
