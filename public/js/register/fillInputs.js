@@ -1,31 +1,38 @@
-import { ManagerDate } from "../managerDate.js";
-
 export class FillInputs {
 
-	fillInputsCodePostal(estados, municipios, localidades) {
+	fillTextInput(target, txt_value){
+		document.getElementById(target).value = txt_value;
+	}
+
+	fillSelectInput(target, txt_value){;
+		let option = document.createElement("option");
+		option.textContent = txt_value;
+		target.appendChild(option);
+	}
+
+	fillDateInput(target, date_value){
+		let partes = date_value.split("/");
+    let date_Formated = `${partes[2]}-${partes[1]}-${partes[0]}`;
+		document.getElementById(target).value = date_Formated;
+	}
+
+
+	fillInputsCodePostal(data_location) {
+		const [estados, municipios, localidades] = data_location;
+		console.log(estados, municipios, localidades);
 		const select_estado = document.getElementById("estado_usuario");
 		const select_municipio = document.getElementById("municipio_usuario");
 		const select_localidad = document.getElementById("localidad_usuario");
 
-		// Clear existing options
+		select_estado.innerHTML = ""; 
+		select_municipio.innerHTML = ""; 
+		select_localidad.innerHTML = "";
 
-		estados.forEach((estado) => {
-			let option = document.createElement("option");
-			option.textContent = estado;
-			select_estado.appendChild(option);
-		});
 
-		municipios.forEach((municipio) => {
-			let option = document.createElement("option");
-			option.textContent = municipio;
-			select_municipio.appendChild(option);
-		});
-
-		localidades.forEach((localidad) => {
-			let option = document.createElement("option");
-			option.textContent = localidad;
-			select_localidad.appendChild(option);
-		});
+		estados.forEach(estado => this.fillSelectInput(select_estado, estado));
+		municipios.forEach(municipio => this.fillSelectInput(select_municipio, municipio));
+		localidades.forEach(localidad => this.fillSelectInput(select_localidad, localidad));
+		
 		const codigo_postal = document.getElementById("codigo_postal");
 		codigo_postal.classList.add("is-valid");
 	};
@@ -33,19 +40,14 @@ export class FillInputs {
 	fillInputsCurp(data) {
 		let dataSolicitnate = data.Solicitante;
 		let dataProbatorio = data.DocProbatorio;
-		
-		document.getElementById("nombres_usuario").value = dataSolicitnate.Nombres;
-		document.getElementById("apellido_paterno").value = dataSolicitnate.ApellidoPaterno;
-		document.getElementById("apellido_materno").value = dataSolicitnate.ApellidoMaterno;
-		document.getElementById("sexo_usuario").value = dataSolicitnate.Sexo;
-		const managerDate = new ManagerDate();
-		document.getElementById("fecha_nacimiento_usuario").value = managerDate.formatDateToForm(dataSolicitnate.FechaNacimiento);
 
+		this.fillTextInput("nombres_usuario", dataSolicitnate.Nombres);
+		this.fillTextInput("apellido_paterno", dataSolicitnate.ApellidoPaterno);
+		this.fillTextInput("apellido_materno", dataSolicitnate.ApellidoMaterno);
+		this.fillTextInput("sexo_usuario", dataSolicitnate.Sexo);
+		this.fillDateInput("fecha_nacimiento_usuario", dataSolicitnate.FechaNacimiento);
 
-		document.getElementById("entidad_nacimiento_usuario").value =
-			dataProbatorio.entidad_nacimiento;
-		document.getElementById("municipio_nacimiento_usuario").value =
-			dataProbatorio.municipio_nacimiento;
+		this.fillSelectInput("entidad_nacimiento_usuario", dataProbatorio.EntidadRegistrante);
+		this.fillSelectInput("municipio_nacimiento_usuario", dataProbatorio.MunicipioRegistro);
 	};
-
 }

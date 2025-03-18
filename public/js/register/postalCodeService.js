@@ -8,7 +8,8 @@ export class PostalCodeService {
     try {
       const response = await fetch(url);
       if (!response.ok) throw new Error("Error al consultar CP");
-      
+
+			
 			const estados = [];
 			const municipios = [];
 			const localidades = [];
@@ -21,11 +22,7 @@ export class PostalCodeService {
 				this.checkOption(item.response.asentamiento, localidades);
 			});
 
-			return {
-				estados,
-				municipios,
-				localidades
-			};
+			return [estados, municipios, localidades];	
     } catch (error) {
       console.error(error);
     }
