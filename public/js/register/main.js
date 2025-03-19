@@ -3,12 +3,14 @@ import { CurpService } from './curpService.js';
 import { PostalCodeService } from './postalCodeService.js';
 import { TableManager } from './tableManager.js';
 import { FillInputs } from './fillInputs.js';
+import { SubmitForm } from './submit.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const formNavigator = new FormNavigator(document.querySelector('form'), '#progressBar');
   const curpService = new CurpService('pruebas');
   const postalService = new PostalCodeService('pruebas');
 	const fillInputs = new FillInputs();
+  const submitForm = new SubmitForm();
   
   // Eventos
   document.getElementById('search_curp_btn').addEventListener('click', async () => {
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       curpInput.classList.add('is-invalid');
     }
+
   });
   
   document.getElementById('search_cp_btn').addEventListener('click', async () => {
@@ -73,5 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
 
-
+  document.getElementById('submitForm').addEventListener('click', () => {
+    
+  });
 });

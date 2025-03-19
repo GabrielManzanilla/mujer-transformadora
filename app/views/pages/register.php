@@ -25,7 +25,7 @@
 				<div id="progressBar" title="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 
-			<form action="">
+			<form action="" id="registerForm">
 				<fieldset class="active"> 
 					<legend>Datos Personales</legend>
 					<div class="mb-3">
@@ -152,17 +152,17 @@
 						</div>
 						<div class="mb-3 col-6">
 							<label for="registro_affy_usuario" class="form-label">Registro estatal de contribuyentes (AAFY)</label>
-							<input type="text" class="form-control" id="registro_affy_usuario" id="registro_affy_usuario">
+							<input type="text" class="form-control" id="registro_affy_usuario">
 						</div>
 					</div>
 					<div class="row">
 						<div class="mb-3 col-6">
 							<label for="registro_sat_usuario" class="form-label">Registro federal de contribuyentes (SAT)</label>
-							<input type="text" class="form-control" id="registro_sat_usuario" id="registro_sat_usuario">
+							<input type="text" class="form-control" id="registro_sat_usuario" >
 						</div>
 						<div class="mb-3 col-6">
 							<label for="regimen" class="form-label"> Regimen</label>
-								<select class="form-select" aria-label="Default select example" id="regimen">
+								<select class="form-select" aria-label="Default select example" id="regimen_fiscal">
 									<option selected>Regimen</option>
 								</select>
 						</div>
@@ -316,15 +316,13 @@
 						<div class="mb-3 col-6">
 							<label for="ine_file" class="form-label">INE</label> 
 							<div class="input-group">
-								<input type="file" class="form-control" id="ine_file" aria-describedby="ine_file	" aria-label="Upload">
-								<button class="btn btn-outline-secondary" type="button" id="ine_btn">Button</button>
+								<input type="file" class="form-control" id="ine_file" aria-describedby="ine_file" aria-label="Upload">
 							</div>
 						</div>
 						<div class="mb-3 col-6">
 							<label for="acta_nacimiento_file" class="form-label">Acta de Nacimiento</label> 
 							<div class="input-group">
 								<input type="file" class="form-control" id="acta_nacimiento_file">
-								<button class="btn btn-outline-secondary" type="button" id="acta_nacimiento_btn">Button</button>
 							</div>
 						</div>
 					</div>
