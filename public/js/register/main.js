@@ -3,7 +3,7 @@ import { CurpService } from "./curpService.js";
 import { PostalCodeService } from "./postalCodeService.js";
 import { TableManager } from "./tableManager.js";
 import { FillInputs } from "./fillInputs.js";
-import { SubmitForm } from "./submit.js";
+import { SubmitFormRegister } from "./registerForm.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const formNavigator = new FormNavigator(
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const curpService = new CurpService("pruebas");
   const postalService = new PostalCodeService("pruebas");
   const fillInputs = new FillInputs();
-  const submitForm = new SubmitForm();
+  const submitForm = new SubmitFormRegister();
 
   // Eventos
   document
@@ -98,7 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
       documentManager.addRow([denominacion_documento, documento]);
     });
 
-  // document.getElementById('submitForm').addEventListener('click', () => {
-
-  // });
+  document.querySelector("form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    // const formData=submitForm.submit();
+    console.log("formData");
+  });
 });

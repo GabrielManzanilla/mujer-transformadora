@@ -389,7 +389,7 @@
 						</div>
 					<div class="d-flex justify-content-between px-3">
 							<button type="button" class="btn btn-secondary previous">Regresar</button>
-							<button type="submit" class="btn btn-primary next">Continuar</button>
+							<button type="submit" class="btn btn-primary next" id="submit_btn">Continuar</button>
 					</div>
 				</fieldset>
 			</form>
