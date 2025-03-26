@@ -1,3 +1,4 @@
+import { ManagerElements } from "../main/managerElements";
 export class FillInputs {
   fillTextInput(target, txt_value) {
     document.getElementById(target).value = txt_value;
@@ -18,20 +19,16 @@ export class FillInputs {
   fillInputsCodePostal(data_location) {
     const [estados, municipios, localidades] = data_location;
     console.log(estados, municipios, localidades);
-    const select_estado = document.getElementById("estado_usuario");
-    const select_municipio = document.getElementById("municipio_usuario");
-    const select_localidad = document.getElementById("localidad_usuario");
+    const managerSelects = new ManagerElements();
+    const selects = managerSelects.clearSelects(["estado_usuario", "municipio_usuario", "localidad_usuario"]);
 
-    select_estado.innerHTML = "";
-    select_municipio.innerHTML = "";
-    select_localidad.innerHTML = "";
 
-    estados.forEach((estado) => this.fillSelectInput(select_estado, estado));
+    estados.forEach((estado) => this.fillSelectInput(selects[0], estado));
     municipios.forEach((municipio) =>
-      this.fillSelectInput(select_municipio, municipio)
+      this.fillSelectInput(selects[1], municipio)
     );
     localidades.forEach((localidad) =>
-      this.fillSelectInput(select_localidad, localidad)
+      this.fillSelectInput(selects[2], localidad)
     );
 
     const codigo_postal = document.getElementById("codigo_postal");
@@ -39,6 +36,7 @@ export class FillInputs {
   }
 
   fillInputsCurp(data) {
+    const curpManager = new ManagerElements()
     let dataSolicitnate = data.Solicitante;
     let dataProbatorio = data.DocProbatorio;
 
@@ -50,19 +48,14 @@ export class FillInputs {
       "fecha_nacimiento_usuario",
       dataSolicitnate.FechaNacimiento
     );
-
-    const entidad_nacimiento_usuario = document.getElementById(
-      "entidad_nacimiento_usuario"
-    );
-    const municipio_nacimiento_usuario = document.getElementById(
-      "municipio_nacimiento_usuario"
-    );
+    const elements = curpManager.get_and_clear(["entidad_nacimiento_usuario","municipio_nacimiento_usuario"])
+    
     this.fillSelectInput(
-      entidad_nacimiento_usuario,
+      elements[0],
       dataProbatorio.EntidadRegistrante
     );
     this.fillSelectInput(
-      municipio_nacimiento_usuario,
+      elements[1],
       dataProbatorio.MunicipioRegistro
     );
   }
