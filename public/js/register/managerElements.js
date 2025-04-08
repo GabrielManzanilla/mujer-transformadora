@@ -1,4 +1,5 @@
-export class ManagerElements{
+export class managerElements{
+
 	get_and_clear(list_id_elements){
 		const elements = []
 		list_id_elements.forEach((id_element) => {
@@ -8,4 +9,5 @@ export class ManagerElements{
 		});
 		return elements;
 	}
+
 }

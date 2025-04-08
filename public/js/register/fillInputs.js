@@ -1,13 +1,14 @@
-import { ManagerElements } from "../main/managerElements";
+import { managerElements } from "./managerElements.js?v=1";
 export class FillInputs {
   fillTextInput(target, txt_value) {
     document.getElementById(target).value = txt_value;
   }
 
   fillSelectInput(target, txt_value) {
+    const element = typeof target === 'string' ? document.getElementById(target) : target;
     let option = document.createElement("option");
     option.textContent = txt_value;
-    target.appendChild(option);
+    element.appendChild(option);
   }
 
   fillDateInput(target, date_value) {
@@ -19,9 +20,12 @@ export class FillInputs {
   fillInputsCodePostal(data_location) {
     const [estados, municipios, localidades] = data_location;
     console.log(estados, municipios, localidades);
-    const managerSelects = new ManagerElements();
-    const selects = managerSelects.clearSelects(["estado_usuario", "municipio_usuario", "localidad_usuario"]);
-
+    const managerSelects = new managerElements();
+    const selects = [
+      document.getElementById("estado_usuario"),
+      document.getElementById("municipio_usuario"),
+      document.getElementById("localidad_usuario"),
+    ];
 
     estados.forEach((estado) => this.fillSelectInput(selects[0], estado));
     municipios.forEach((municipio) =>
@@ -36,7 +40,7 @@ export class FillInputs {
   }
 
   fillInputsCurp(data) {
-    const curpManager = new ManagerElements()
+    const curpManager = new managerElements();
     let dataSolicitnate = data.Solicitante;
     let dataProbatorio = data.DocProbatorio;
 
@@ -47,16 +51,9 @@ export class FillInputs {
     this.fillDateInput(
       "fecha_nacimiento_usuario",
       dataSolicitnate.FechaNacimiento
-    );
-    const elements = curpManager.get_and_clear(["entidad_nacimiento_usuario","municipio_nacimiento_usuario"])
-    
-    this.fillSelectInput(
-      elements[0],
-      dataProbatorio.EntidadRegistrante
-    );
-    this.fillSelectInput(
-      elements[1],
-      dataProbatorio.MunicipioRegistro
-    );
+    ); 
+
+    this.fillSelectInput(document.getElementById("entidad_nacimiento_usuario"), dataProbatorio.EntidadRegistrante);
+    this.fillSelectInput(document.getElementById("municipio_nacimiento_usuario"), dataProbatorio.MunicipioRegistro);
   }
 }

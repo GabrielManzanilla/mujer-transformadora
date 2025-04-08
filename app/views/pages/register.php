@@ -31,7 +31,7 @@
 					<div class="mb-3">
 						<label for="curp_usuario" class="form-label">CURP</label>
 						<div class="input-group">
-							<input type="text" class="form-control" id="curp_usuario" aria-describedby="curplHelp">
+							<input type="text" class="form-control" id="curp_usuario" aria-describedby="curpHelp" required>
 							<button type="button" class="btn btn-outline-secondary" id="search_curp_btn">Buscar</button>
 						</div>
 						<div id="curpHelp" class="form-text">Proporcione el curp para realizar la busqueda</div>

@@ -1,10 +1,7 @@
 export class SubmitFormRegister{
-  constructor() {
-    this.form = document.querySelector("form");
-    this.form.addEventListener("submit", this.submit.bind(this));
-  }
 
-  submit() {
+
+  submitData() {
     //Datos de la primera seccion 'Datos Personales'
 		const datos_personales =['curp_usuario','apellido_paterno','apellido_materno','nombres_usuario','fecha_nacimiento_usuario','entidad_nacimiento_usuario','municipio_nacimiento_usuario','sexo_usuario'];
 		const datos_personales_json=this.getElementsValues(datos_personales);
@@ -54,7 +51,8 @@ export class SubmitFormRegister{
 		formSubmit.documentos_adicionales=documentos_adicionales;
 
 
-		console.log(formSubmit);
+		//console.log(formSubmit);
+		this.envioDatos(formSubmit);
   }
 
 
@@ -107,5 +105,28 @@ export class SubmitFormRegister{
 			}
 		});
 		return fileInputs;
+	}
+
+	async envioDatos(datosUsuario){
+		try{
+			const respuesta = await fetch('/mujer-transformadora/app/controllers/registerForm.php',{
+				method : 'POST',
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				body : JSON.stringify(datosUsuario)
+			});
+			const response = await respuesta.json();
+			console.log('Respuesta del servidor', response);
+			if (resultado.success) {
+				alert('Datos guardados correctamente');
+			} else {
+				alert('Error: ' + resultado.message);
+			}
+			
+		} catch (error){
+			console.error(error);
+		}
+		
 	}
 }
