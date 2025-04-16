@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create("domicilio", function (Blueprint $table) {
-            $table->foreignId("solicitante_id")->constrained("solicitantes")->onDelete("cascade");
-            $table->string("direccion");
-            $table->string("estado");
-            $table->string("municipio");
-            $table->string("localidad");
+        Schema::create('cat_candidato', function (Blueprint $table) {
+            $table->id("pk_candidato_id");
+            $table->string("str_nombre");
+            $table->string("str_descripcion");
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('cat_candidato');
     }
 };
