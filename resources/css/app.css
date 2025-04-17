@@ -14,3 +14,11 @@
 :root{
     --color-primary: #6D1528;
 }
+.ocultar-scroll {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE y Edge */
+  }
+  
+  .ocultar-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }

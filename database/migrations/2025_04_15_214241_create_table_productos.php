@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_productos', function (Blueprint $table) {
             $table->uuid("pk_producto_id")->primary();
-            $table->string("str_nombre_producto", 100);
+            $table->string("str_nombre_producto", 100); 
             $table->string("str_descripcion_producto", 255);
             $table->integer("int_produccion_mensual");
             $table->integer("int_venta_mensual" );

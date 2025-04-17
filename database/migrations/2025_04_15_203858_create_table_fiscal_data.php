@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string("str_clave_imss");
             $table->unsignedBigInteger("fk_actividad_economica_id");
             $table ->foreign("fk_actividad_economica_id")->references("pk_actividad_economica_id")->on("cat_actividades_economicas")->onDelete("cascade");
+            $table ->integer("int_num_empleados");
+            // datos de union
             $table->uuid("fk_persona_id");
             $table ->foreign("fk_persona_id")->references("pk_persona_id")->on("tb_personas")->onDelete("cascade");
             $table->uuid("fk_red_social_id");

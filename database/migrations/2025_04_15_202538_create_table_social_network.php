@@ -17,7 +17,6 @@ return new class extends Migration
             $table ->string("str_facebook_empresarial")->nullable();
             $table ->string("str_facebook_marketplace")->nullable();
             $table ->string("str_pagina_web")->nullable();
-            $table ->string("str_whatsapp")->nullable();
             $table ->string("str_whatsapp_bussines")->nullable();
             $table ->string("str_mercado_libre")->nullable();
             $table ->string("str_mercado_pago")->nullable();
