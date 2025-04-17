@@ -1,4 +1,4 @@
-class MultiStepForm {
+export class MultiStepForm {
   constructor() {
     this.form = document.getElementById('registerForm');
     this.steps = document.querySelectorAll('.step');

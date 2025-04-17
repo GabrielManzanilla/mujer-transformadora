@@ -1,1 +1,3 @@
-console.log('Hello World!');
+export function saludo() {
+		return 'Hola desde el módulo de saludo';
+}

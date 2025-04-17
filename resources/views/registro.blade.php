@@ -3,7 +3,8 @@
 	<div class="w-full h-full px-4 pt-4">
 
 		<div class="w-full bg-gray-200 rounded-full h-5 dark:bg-gray-400">
-			<div id="progress_bar" class="bg-[#6D1528] h-5 rounded-full text-center text-[#c2995c] font-bold pb-5" style="width: 0%">0%</div>
+			<div id="progress_bar" class="bg-[#6D1528] h-5 rounded-full text-center text-[#c2995c] font-bold pb-5"
+				style="width: 0%">0%</div>
 		</div>
 		<form action="" id="registerForm" class="flex flex-row w-full h-full gap-2 px-5 ">
 			<div class="flex flex-col flex-1 mt-8">
@@ -83,19 +84,20 @@
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 									placeholder="Email">
 								<input type="tel" name="tel_usuario" id="tel_usuario"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]" placeholder="Número Telefonico">
+									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									placeholder="Número Telefonico">
 							</div>
 							<div class="mt-2 flex items-center space-x-2 flex-row md:flex-row">
-							<select
-								class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-								id="estado_perfil_usuario">
-								<option selected>Estado Perfil</option>
-							</select>
-							<select
-								class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-								id="estado_candidato">
-								<option selected>Candidato</option>
-							</select>
+								<select
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									id="estado_perfil_usuario">
+									<option selected>Estado Perfil</option>
+								</select>
+								<select
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									id="estado_candidato">
+									<option selected>Candidato</option>
+								</select>
 
 							</div>
 					</fieldset>
@@ -121,7 +123,7 @@
 									<option selected>Regimen</option>
 								</select>
 							</div>
-							
+
 						</div>
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<div class="mb-4">
@@ -132,21 +134,22 @@
 									id="nombre_comercial">
 							</div>
 							<div class="mb-4">
-								<label for="tiempo_ejerciendo" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Inicio Labores</label>
+								<label for="tiempo_ejerciendo" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Inicio
+									Labores</label>
 								<input type="date"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 									id="tiempo_ejerciendo">
 							</div>
 						</div>
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<div class="mb-4">
-							<label for="registro_imss_usuario" class="block text-sm font-medium text-gray-700 mb-1">Registro
-								patronal
-								(IMSS)</label>
-							<input type="text"
-								class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-								id="registro_imss_usuario">
-						</div>
+							<div class="mb-4">
+								<label for="registro_imss_usuario" class="block text-sm font-medium text-gray-700 mb-1">Registro
+									patronal
+									(IMSS)</label>
+								<input type="text"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									id="registro_imss_usuario">
+							</div>
 							<div class="mb-4">
 								<label for="registro_affy_usuario" class="block text-sm font-medium text-gray-700 mb-1">Registro
 									estatal de
@@ -190,7 +193,7 @@
 									id="registro_impi_usuario">
 							</div>
 						</div>
-						
+
 						<div class="mb-4">
 							<label for="nombre_registro" class="block text-sm font-medium text-gray-700 mb-1">Añadir registros
 								adicionales</label>
@@ -310,13 +313,13 @@
 						<div class="mb-4 flex space-x-2">
 							<input type="text"
 								class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-								id="nombre_producto" placeholder="Producto"> 
-								<input type="text"
+								id="nombre_producto" placeholder="Producto">
+							<input type="text"
 								class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 								id="nombre_producto" placeholder="Descripción del producto">
 						</div>
 						<div class="mb-4 flex space-x-2">
-						<input type="text"
+							<input type="text"
 								class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 								id="produccion_mensual" placeholder="Produccion al mes">
 							<input type="text"
@@ -468,7 +471,7 @@
 									<input type="file"
 										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 										id="ine_file" aria-describedby="ine_file">
-										
+
 								</div>
 							</div>
 							<div class="mb-4">
@@ -573,18 +576,20 @@
 				</div>
 				<div class="w-full px-3 sticky bottom-0 bg-white flex justify-between py-2">
 					<button type="button"
-						class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6D1528] " id="prevBtn">Regresar</button>
+						class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6D1528] "
+						id="prevBtn">Regresar</button>
 					<button type="button"
-						class="px-4 py-2 bg-[#6D1528] text-white rounded-md hover:bg-[#9e2b44] focus:outline-none focus:ring-2 focus:bg-[#9e2b44] " id="nextBtn">Continuar</button>
+						class="px-4 py-2 bg-[#6D1528] text-white rounded-md hover:bg-[#9e2b44] focus:outline-none focus:ring-2 focus:bg-[#9e2b44] "
+						id="nextBtn">Continuar</button>
 				</div>
 			</div>
 		</form>
 
 	</div>
-		<script src="{{ asset('js/register.js') }}"></script>
-	<script>
-			document.addEventListener('DOMContentLoaded', () => {
-					const form = new MultiStepForm();
-			});
-	</script>
+	<!-- <script src="{{ asset('js/register.js') }}"></script>
+		<script>
+				document.addEventListener('DOMContentLoaded', () => {
+						const form = new MultiStepForm();
+				});
+		</script> -->
 @endsection
