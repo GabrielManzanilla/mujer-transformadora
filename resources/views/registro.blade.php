@@ -218,13 +218,13 @@
 									</tr>
 								</thead>
 								<tbody class="bg-white divide-y divide-gray-200">
-									<tr id="fila_mensaje_registros_fiscales_table">
+									<tr id="message_registros_fiscales_table_empty">
 										<td colspan="3" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
-											registros
-											agregados</td>
+											datos disponibles</td>
 									</tr>
 								</tbody>
 							</table>
+							<input type="hidden" name="registros_adicionales" id="registros_json">
 						</div>
 
 					</fieldset>
@@ -250,27 +250,27 @@
 								<select id="estado_domiclio" name="estado_domiclio"
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 									>
-									<option selected>Estado</option>
+									<option selected value="0">Estado</option>
 								</select>
 								<select id="municipio_domicilio" name="municipio_domicilio"
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 									>
-									<option selected>Municipio</option>
+									<option selected value="0">Municipio</option>
 								</select>
 								<select
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 									id="localidad_domicilio" name="localidad_domicilio">
-									<option selected>Localidad</option>
+									<option selected value="0">Localidad</option>
 								</select>
 								<button type="button"
 									class="px-4 py-2 border border-[#6D1528] bg-white text-[#6D1528] rounded-md hover:bg-[#9e2b4428] focus:outline-none focus:ring-2 focus:ring-[#9e2b44]"
-									id="add_address">Añadir</button>
+									id="add_domicilio">Añadir</button>
 							</div>
 						</div>	
 						<h5 class="text-lg font-medium mb-2">Direcciones</h5>
 						<div class="mb-4 w-full border border-gray-300 rounded-lg p-2 pt-3">
 							<!-- REVISAR TABLA DE DOMICILIOS -->
-							<table class="min-w-full divide-y divide-gray-200 w-76 overflow-x-auto" id="address_table">
+							<table class="min-w-full divide-y divide-gray-200 w-76 overflow-x-auto" id="domicilios_table">
 								<thead class="bg-gray-50">
 									<tr>
 										<th scope="col"
@@ -291,13 +291,13 @@
 									</tr>
 								</thead>
 								<tbody class="bg-white divide-y divide-gray-200">
-									<tr id="fila_mensaje_address_table">
+									<tr id="message_domicilios_table_empty">
 										<td colspan="5" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
-											direcciones
-											agregadas</td>
-									</tr>
+											datos disponibles</td>
+									</tr> 
 								</tbody>
 							</table>
+							<input type="hidden" name="domicilios_json" id="domicilios_json">
 						</div>
 					</fieldset>
 
@@ -352,13 +352,13 @@
 									</tr>
 								</thead>
 								<tbody class="bg-white divide-y divide-gray-200">
-									<tr id="fila_mensaje_productos_table">
+									<tr id="message_productos_table_empty">
 										<td colspan="5" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
-											productos
-											agregados</td>
+											datos</td>
 									</tr>
 								</tbody>
 							</table>
+							<input type="hidden" name="productos_json" id="productos_json">
 						</div>
 
 					</fieldset>
@@ -448,13 +448,13 @@
 									</tr>
 								</thead>
 								<tbody class="bg-white divide-y divide-gray-200">
-									<tr id="fila_mensaje_medios_digitales_table">
+									<tr id="message_medios_digitales_table_empty">
 										<td colspan="3" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
-											medios
-											agregados</td>
+											datos disponibles</td>
 									</tr>
 								</tbody>
 							</table>
+							<input type="hidden" name="medios_digitales_json" id="medios_digitales_json">
 						</div>
 					</fieldset>
 
@@ -561,13 +561,13 @@
 									</tr>
 								</thead>
 								<tbody class="bg-white divide-y divide-gray-200">
-									<tr id="fila_mensaje_documentos_adicionales_table">
+									<tr id="message_documentos_adicionales_table_empty">
 										<td colspan="3" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
-											productos
-											agregados</td>
+											datos disponibles</td>
 									</tr>
 								</tbody>
 							</table>
+							<input type="hidden" name="documentos_adicionales_json" id="documentos_adicionales_json">
 						</div>
 					</fieldset>
 				</div>

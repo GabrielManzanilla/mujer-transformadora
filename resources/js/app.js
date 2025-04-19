@@ -1,7 +1,7 @@
 import "./bootstrap";
-import {MultiStepForm} from"./register";
+import {Register} from './register/index'
 import { saludo } from "./saludo";
 
 document.addEventListener("DOMContentLoaded", () => {
- new MultiStepForm();
+ new Register();
 });
