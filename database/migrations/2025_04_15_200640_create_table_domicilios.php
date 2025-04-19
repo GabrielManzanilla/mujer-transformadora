@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('tb_domicilios', function (Blueprint $table) {
             $table->uuid("pk_domicilio_id")->primary();
             $table->string("str_direccion", 100);
-            $table -> integer("int_codigo_postal");
-
-
             $table ->unsignedBigInteger("fk_estado_id");
             $table ->unsignedBigInteger("fk_municipio_id");
             $table ->unsignedBigInteger("fk_localidad_id");
             $table -> foreign("fk_estado_id")->references("pk_id_estado")->on("cat_estados")->onDelete("cascade");
             $table -> foreign("fk_municipio_id")->references("pk_id_municipio")->on("cat_municipios")->onDelete("cascade");
-
             $table -> foreign("fk_localidad_id")->references("pk_id_localidad")->on("cat_localidades")->onDelete("cascade");
+            
+            //union con la tabla de datos fiscales
+            $table ->uuid("fk_dato_fiscal_id");
+            $table -> foreign("fk_dato_fiscal_id")->references("pk_dato_fiscal_id")->on("tb_datos_fiscales")->onDelete("cascade");
             $table->timestamps();
         });
     }

@@ -20,12 +20,18 @@ return new class extends Migration
             $table ->string("str_whatsapp_bussines")->nullable();
             $table ->string("str_mercado_libre")->nullable();
             $table ->string("str_mercado_pago")->nullable();
+
+            //union con la tabla tb_datos_fiscales
+            $table ->uuid("fk_dato_fiscal_id");
+            $table->foreign("fk_dato_fiscal_id")->references("pk_dato_fiscal_id")->on("tb_datos_fiscales")->onDelete("cascade");
+
             $table->timestamps();
         });
 
         Schema::create("tb_redes_adicionales", function (Blueprint $table) {
             $table->uuid("fk_redes_sociales_id");
             $table->foreign("fk_redes_sociales_id")->references("pk_red_social_id")->on("tb_redes_sociales")->onDelete("cascade");
+            
             $table->string("str_nombre_red_social");
             $table->string("str_nombre_perfil");
         });

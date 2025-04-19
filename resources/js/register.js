@@ -3,7 +3,6 @@ export class MultiStepForm {
     this.form = document.getElementById('registerForm');
     this.steps = document.querySelectorAll('.step');
     this.prevBtn = document.getElementById('prevBtn'); // Cambiado a clase
-    console.log(this.prevBtn.textContent);
     this.nextBtn = document.getElementById('nextBtn'); // Cambiado a clase
     this.stepIndicators = document.getElementById('indicatorsSection');
     this.currentStep = 1;
@@ -27,7 +26,7 @@ export class MultiStepForm {
       const stepTitle = step.querySelector('legend').textContent;
       
       const indicator = document.createElement('li');
-      indicator.className = `font-bold  pl-5 p-2 rounded-l-lg cursor-pointer hover: ${stepNumber === 1 ? 'bg-opacity-100 bg-[#6D1528] text-[#c2995c] ' : 'bg-opacity-10 bg-gray-300 text-[#6D1528]'}`;
+      indicator.className = `font-bold md:pl-5 p-2 rounded-l-lg cursor-pointer hover: ${stepNumber === 1 ? 'bg-opacity-100 bg-[#6D1528] text-[#c2995c] ' : 'bg-opacity-10 bg-gray-300 text-[#6D1528]'}`;
       indicator.dataset.step = stepNumber;
       indicator.innerHTML = `
         <span class="flex items-center">
