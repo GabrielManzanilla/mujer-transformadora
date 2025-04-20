@@ -30,7 +30,7 @@ export class TableManager{
 
 		//Creacion de la nueva fila y llenado de celdas con los datos
 		const newRow = this.tableBody.insertRow();
-		data.forEach((cellData) => {
+		data.forEach((cellData, i) => {
 			const newCell = newRow.insertCell();
 			newCell.textContent = cellData;
 		});
@@ -43,8 +43,9 @@ export class TableManager{
 															 'hover:bg-red-700', 'hover:cursor-pointer');
 
 		//añadir funcionalidad para eliminar la fila del boton
-		deleteButton.addEventListener('click', () => {
+		deleteButton.addEventListener('click', (i) => {
 			newRow.remove();
+			this.array_data.splice(i);
 			this.checkEmptyTable();
 		}); 
 		optionsCell.appendChild(deleteButton);
