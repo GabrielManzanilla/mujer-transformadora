@@ -80,7 +80,7 @@ export class MultiStepForm {
   }
 
   updateProgressBar() {
-    const progressPercentage = (this.currentStep / this.totalSteps) * 100;
+    const progressPercentage = ((this.currentStep -1) / this.totalSteps) * 100;
     const progressBar = document.querySelector('#progress_bar');
     progressBar.style.width = `${progressPercentage}`+'%';
     progressBar.textContent = `${Math.round(progressPercentage)}%`;

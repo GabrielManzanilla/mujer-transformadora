@@ -1,12 +1,33 @@
 @extends('layouts.base')
 @section('content')
+	@if(session('message'))
+		<dialog id="errorDialog" open>
+			<div class="bg-white p-4 rounded shadow w-full h-full">
+				<p class="text-red-600 font-semibold">{{ session('message') }}</p>
+				<button id="closeDialog" class="mt-2 bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
+			</div>
+		</dialog>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const dialog = document.getElementById('errorDialog');
+				const closeBtn = document.getElementById('closeDialog');
+
+				closeBtn.addEventListener('click', function () {
+					dialog.close();
+				});
+			});
+		</script>
+	@endif
+
 	<div class="w-full h-full px-1 md:px-4 pt-4">
 
 		<div class="w-full bg-gray-200 rounded-full h-5 dark:bg-gray-400">
 			<div id="progress_bar" class="bg-[#6D1528] h-5 rounded-full text-center text-[#c2995c] font-bold pb-5"
 				style="width: 0%">0%</div>
 		</div>
-		<form form action="{{ route('register.store') }}" method="post" id="registerForm" class="flex flex-row w-full h-full gap-2 md:px-5 max-w-screen">
+		<form form action="{{ route('register.store') }}" method="post" id="registerForm"
+			class="flex flex-row w-full h-full gap-2 md:px-5 max-w-screen">
 			@csrf
 			<div class="flex flex-col flex-0 mt-8">
 				<div class="w-full">
@@ -19,7 +40,7 @@
 					<fieldset class="step hidden border border-gray-300 p-2 rounded-lg mb-4" data-step="1">
 						<legend class="text-lg font-medium px-2">Datos Personales</legend>
 						<div class="mb-4">
-							<label for="curp_usuario" class="block text-sm font-medium text-gray-700 mb-1">CURP</label>
+							<label class="block text-sm font-medium text-gray-700 mb-1">CURP</label>
 							<div class="flex">
 								<input type="text" name="curp_usuario" id="curp_usuario"
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
@@ -47,7 +68,7 @@
 							</div>
 						</div>
 						<div class="mb-4">
-							<label for="fecha_nacimiento_usuario" class="block text-sm font-medium text-gray-700 mb-1">Lugar de
+							<label class="block text-sm font-medium text-gray-700 mb-1">Lugar de
 								Nacimiento</label>
 							<div class="flex gap-2 flex-wrap">
 								<select name="municipio_nacimiento" id="municipio_nacimiento"
@@ -58,7 +79,7 @@
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 									<option selected>Estado</option>
 								</select>
-								<input name="fecha_nacimiento_usuario" id="fecha_nacimiento_usuario"
+								<input name="fecha_nacimiento" id="fecha_nacimiento"
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 									type="date">
 							</div>
@@ -73,8 +94,9 @@
 								<option value="Hombre">Hombre</option>
 							</select>
 							<div class="mt-2 flex items-center">
+								<input type="hidden" name="mayahablante" id="mayahablante" value="0">
 								<input class="h-4 w-4 text-[#6D1528] focus:ring-[#6D1528] border-gray-300 rounded" type="checkbox"
-									id="mayahablante" name="mayahablante" value="True">
+									id="mayahablante" name="mayahablante" value="1">
 								<label for="mayahablante" class="ml-2 block text-sm text-gray-700">Maya hablante</label>
 							</div>
 							<div class="flex gap-2 flex-wrap mt-2">
@@ -88,7 +110,7 @@
 							<div class="mt-2 flex gap-2 flex-wrap">
 								<select id="estado_perfil_usuario" name="estado_perfil_usuario"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-									<option selected>Estado Perfil</option>
+									<option selected value="Activo">Estado Perfil</option>
 								</select>
 								<select id="estado_candidato" name="estado_candidato"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
@@ -139,16 +161,14 @@
 									patronal
 									(IMSS)</label>
 								<input type="text" id="registro_imss" name="registro_imss"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="registro_affy" class="block text-sm font-medium text-gray-700 mb-1">Registro
 									estatal de
 									contribuyentes (AAFY)</label>
 								<input type="text" id="registro_affy" name="registro_affy"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 							</div>
 						</div>
 						<div class="flex flex-col w-full md:flex-row gap-2">
@@ -156,16 +176,14 @@
 								<label for="registro_sat_usuario" class="block text-sm font-medium text-gray-700 mb-1">Registro
 									federal de
 									contribuyentes (RFC)</label>
-								<input type="text" id="registro_sat" name="registro_sat"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+								<input type="text" id="rfc_usuario" name="rfc_usuario"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="razon_social" class="block text-sm font-medium text-gray-700 mb-1">Razon
 									Social</label>
 								<input type="text" id="razon_social" name="razon_social"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 							</div>
 						</div>
 						<div class="flex flex-col w-full md:flex-row gap-2">
@@ -173,16 +191,14 @@
 								<label for="numero_empleados" class="block text-sm font-medium text-gray-700 mb-1">Numero de
 									empleados</label>
 								<input type="number" id="numero_empleados" name="numero_empleados"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="registro_impi" class="block text-sm font-medium text-gray-700 mb-1">Registro de
 									marca
 									(IMPI)</label>
 								<input type="text" id="registro_impi" name="registro_impi"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 							</div>
 						</div>
 						<div class="mb-4">
@@ -203,7 +219,8 @@
 						</div>
 						<h5 class="text-lg font-medium mb-2">Registros Adicionales</h5>
 						<div class="mb-4 w-full border border-gray-300 rounded-lg p-2 pt-3">
-							<table class="min-w-full divide-y divide-gray-200 w-78 md:w-full overflow-x-auto" id="registros_fiscales_table">
+							<table class="min-w-full divide-y divide-gray-200 w-78 md:w-full overflow-x-auto"
+								id="registros_fiscales_table">
 								<thead class="bg-gray-50">
 									<tr>
 										<th scope="col"
@@ -246,15 +263,13 @@
 							<div class="flex flex-col w-full lg:flex-row gap-2">
 								<input type="text" id="direccion" name="direccion"
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Calle, Numero y Cruzamientos">
+									placeholder="Calle, Numero y Cruzamientos">
 								<select id="estado_domiclio" name="estado_domiclio"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 									<option selected value="0">Estado</option>
 								</select>
 								<select id="municipio_domicilio" name="municipio_domicilio"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 									<option selected value="0">Municipio</option>
 								</select>
 								<select
@@ -266,7 +281,7 @@
 									class="px-4 py-2 border border-[#6D1528] bg-white text-[#6D1528] rounded-md hover:bg-[#9e2b4428] focus:outline-none focus:ring-2 focus:ring-[#9e2b44]"
 									id="add_domicilio">Añadir</button>
 							</div>
-						</div>	
+						</div>
 						<h5 class="text-lg font-medium mb-2">Direcciones</h5>
 						<div class="mb-4 w-full border border-gray-300 rounded-lg p-2 pt-3">
 							<!-- REVISAR TABLA DE DOMICILIOS -->
@@ -294,7 +309,7 @@
 									<tr id="message_domicilios_table_empty">
 										<td colspan="5" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
 											datos disponibles</td>
-									</tr> 
+									</tr>
 								</tbody>
 							</table>
 							<input type="hidden" name="domicilios_json" id="domicilios_json">
@@ -320,7 +335,7 @@
 								placeholder="Ventas mensuales">
 							<input type="text" id="ventas_anuales" name="ventas_anuales"
 								class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-								 placeholder="Ventas anuales">
+								placeholder="Ventas anuales">
 							<button type="button"
 								class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 								id="add_producto">Añadir</button>
@@ -370,20 +385,20 @@
 								<label for="facebook_usuario" class="block text-sm font-medium text-gray-700 mb-1">Facebook</label>
 								<input type="text" id="facebook_usuario" name="facebook_usuario"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Facebook">
+									placeholder="Facebook">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="facebook_empresarial" class="block text-sm font-medium text-gray-700 mb-1">Facebook
 									Empresarial</label>
 								<input type="text" id="facebook_empresarial" name="facebook_empresarial"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Facebook Empresarial">
+									placeholder="Facebook Empresarial">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="facebook_marketplace" class="block text-sm font-medium text-gray-700 mb-1">Marketplace</label>
 								<input type="text" id="facebook_marketplace" name="facebook_marketplace"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Marketplace">
+									placeholder="Marketplace">
 							</div>
 						</div>
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -391,28 +406,28 @@
 								<label for="pagina_web" class="block text-sm font-medium text-gray-700 mb-1">Pagina WEB</label>
 								<input type="text" id="pagina_web" name="pagina_web"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Pagina WEB">
+									placeholder="Pagina WEB">
 							</div>
 							<div class="mb-4">
 								<label for="whatsapp_empresarial" class="block text-sm font-medium text-gray-700 mb-1">Whatsapp
 									Empresarial</label>
 								<input type="text" id="whatsapp_empresarial" name="whatsapp_empresarial"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Whatsapp Empresarial">
+									placeholder="Whatsapp Empresarial">
 							</div>
 						</div>
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-							<div class="mb-4"> 
+							<div class="mb-4">
 								<label for="mercado_libre" class="block text-sm font-medium text-gray-700 mb-1">Mercado Libre</label>
 								<input type="text" id="mercado_libre" name="mercado_libre"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Mercado Libre">
+									placeholder="Mercado Libre">
 							</div>
 							<div class="mb-4">
 								<label for="mercado_pago" class="block text-sm font-medium text-gray-700 mb-1">Mercado Pago</label>
 								<input type="text" id="mercado_pago" name="mercado_pago"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Mercado Pago">
+									placeholder="Mercado Pago">
 							</div>
 						</div>
 						<div class="mb-4">
@@ -421,10 +436,10 @@
 							<div class="flex flex-col w-full md:flex-row gap-2">
 								<input type="text" id="nombre_medio_adicional" name="nombre_medio_adicional"
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Medio digital">
+									placeholder="Medio digital">
 								<input type="text" id="medio_adicional_registro" name="medio_adicional_registro"
 									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									 placeholder="Nombre en el medio">
+									placeholder="Nombre en el medio">
 								<button type="button"
 									class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
 									id="add_medio_digital">Añadir</button>
@@ -465,8 +480,7 @@
 								<label for="ine_file" class="block text-sm font-medium text-gray-700 mb-1">INE</label>
 								<div class="flex">
 									<input type="file" id="ine_file" name="ine_file"
-										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-										>
+										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 
 								</div>
 							</div>
@@ -475,8 +489,7 @@
 									Nacimiento</label>
 								<div class="flex">
 									<input type="file" id="acta_nacimiento_file" name="acta_nacimiento_file"
-										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-										>
+										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 								</div>
 							</div>
 						</div>
@@ -487,8 +500,7 @@
 									Domicilio</label>
 								<div class="flex">
 									<input type="file" id="comprobante_domicilio_file" name="comprobante_domicilio_file"
-										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-										>
+										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 								</div>
 							</div>
 							<div class="mb-4 flex-1">
@@ -497,8 +509,7 @@
 									(CIF)</label>
 								<div class="flex">
 									<input type="file" id="cif_file" name="cif_file"
-										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-										>
+										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 								</div>
 							</div>
 						</div>
@@ -507,16 +518,14 @@
 								<label for="affy_file" class="block text-sm font-medium text-gray-700 mb-1">Registro AFFY</label>
 								<div class="flex">
 									<input type="file" id="affy_file" name="affy_file"
-										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-										>
+										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 								</div>
 							</div>
 							<div class="mb-4 flex-1">
 								<label for="impi_file" class="block text-sm font-medium text-gray-700 mb-1">Registro IMPI</label>
 								<div class="flex">
 									<input type="file" id="impi_file" name="impi_file"
-										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-										>
+										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 								</div>
 							</div>
 						</div>
@@ -524,8 +533,7 @@
 							<label for="imss_file" class="block text-sm font-medium text-gray-700 mb-1">Registro IMSS</label>
 							<div class="flex">
 								<input type="file" id="imss_file" name="imss_file"
-									class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									>
+									class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 							</div>
 						</div>
 						<div class="mb-4">

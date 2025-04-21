@@ -15,11 +15,11 @@ return new class extends Migration
             $table->uuid("pk_dato_fiscal_id")->primary();
             $table->string("str_razon_social")->unique();
             $table->string("str_nombre_comercial")->unique();
-            $table->integer("int_tiempo_ejerciendo");
+            $table->date("dt_tiempo_ejerciendo");
             $table->string("str_rfc")->unique();
 
             //llamado al catalogo cat_regimen
-            $table->uuid("fk_regimen_id");
+            $table->uuid("fk_regimen_id")->nullable();
             $table ->foreign("fk_regimen_id")->references("pk_regimen_id")->on("cat_regimen")->onDelete("cascade");
             
             
@@ -28,10 +28,15 @@ return new class extends Migration
             $table->string("str_clave_imss");
 
             //llamado al catalogo cat_actividad_economica
-            $table->unsignedBigInteger("fk_actividad_economica_id");
+            $table->unsignedBigInteger("fk_actividad_economica_id")->nullable();
             $table ->foreign("fk_actividad_economica_id")->references("pk_actividad_economica_id")->on("cat_actividades_economicas")->onDelete("cascade");
             
             $table ->integer("int_num_empleados");
+
+            //llamado a la tabla tb_personas
+            $table->uuid("fk_persona_id");
+            $table->foreign("fk_persona_id")->references("pk_persona_id")->on("tb_personas")->onDelete("cascade");
+            $table->timestamps();
             });
 
         Schema::create("tb_registros_adicionales", function (Blueprint $table) {
