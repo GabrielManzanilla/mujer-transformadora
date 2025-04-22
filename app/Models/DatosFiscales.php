@@ -42,4 +42,8 @@ class DatosFiscales extends Model
     {
         return $this->belongsTo(Persona::class, 'fk_persona_id', 'pk_persona_id');
     }
+
+    public function adicional(){
+        return $this->hasOne(RegistrosAdicionales::class, 'fk_fiscal_data_id', 'pk_dato_fiscal_id');
+    }
 }

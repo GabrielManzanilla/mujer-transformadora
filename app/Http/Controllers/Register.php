@@ -16,7 +16,7 @@ class Register extends Controller
     public function index()
     {
         //
-        
+
     }
 
     /**
@@ -36,19 +36,19 @@ class Register extends Controller
 
         $validate = Validator::make($request->all(), [
             // DATOS PERSONALES
-            'nombres_usuario'       => 'nullable | string|max:50',
-            'apellido_paterno'     => 'nullable | string|max:50',
-            'apellido_materno'     => 'nullable | string|max:50',
-            'curp_usuario'          => 'nullable | string|max:18',
-            'municipio_nacimiento'  => 'nullable | string',
-            'estado_nacimiento'     => 'nullable | string',
-            'fecha_nacimiento'      => 'nullable | date',
-            'sexo_usuario'          => 'nullable | string',
-            'mayahablante'          => 'nullable | boolean',
-            'email_usuario'         => 'nullable | email',
-            'telefono_usuario'      => 'nullable | string|max:10',
+            'nombres_usuario' => 'nullable | string|max:50',
+            'apellido_paterno' => 'nullable | string|max:50',
+            'apellido_materno' => 'nullable | string|max:50',
+            'curp_usuario' => 'nullable | string|max:18',
+            'municipio_nacimiento' => 'nullable | string',
+            'estado_nacimiento' => 'nullable | string',
+            'fecha_nacimiento' => 'nullable | date',
+            'sexo_usuario' => 'nullable | string',
+            'mayahablante' => 'nullable | boolean',
+            'email_usuario' => 'nullable | email',
+            'telefono_usuario' => 'nullable | string|max:10',
             'estado_perfil_usuario' => 'nullable | string',
-            'estado_candidato'      => 'nullable | string',
+            'estado_candidato' => 'nullable | string',
 
             //DATOS FISCALES
             'actividad_economica' => ' nullable| string',
@@ -62,7 +62,7 @@ class Register extends Controller
             'numero_empleados' => '| integer',
             'registro_impi' => 'nullable | string | max:11',
             // -- falta la tabla de registros adicionales --
-            // 'registros_json' => 'nullable| json',
+            'registros_adicionales' => 'nullable| json',
 
             // //DOMICILIOS
             // 'domicilios_json' => 'nullable | json',
@@ -92,34 +92,32 @@ class Register extends Controller
             // // -- tabla de documentos adicionales --  
             // 'documentos_adicionales_json' => 'nullable | json'   
         ]);
-        
+
         if ($validate->fails()) {
             dd($validate->errors());
             //return redirect()->back()->with('message', 'Debes completar todos los campos');
-        }else{
-            
+        } else {
             $validate = $validate->validated();
-            
             DB::transaction(function () use ($validate) {
                 $persona = Persona::create([
-                    'str_curp'               => $validate['curp_usuario'],
-                    'str_nombre'             => $validate['nombres_usuario'],
-                    'str_apellido_paterno'   => $validate['apellido_paterno'],
-                    'str_apellido_materno'   => $validate['apellido_materno'],
-                    'dt_fecha_nacimiento'    => $validate['fecha_nacimiento'],
-                    'str_estado_nacimiento'  => $validate['estado_nacimiento'],
-                    'str_municipio_nacimiento'=> $validate['municipio_nacimiento'],
-                    'str_sexo'               => $validate['sexo_usuario'],
-                    'bl_mayahablante'        => $validate['mayahablante'],
+                    'str_curp' => $validate['curp_usuario'],
+                    'str_nombre' => $validate['nombres_usuario'],
+                    'str_apellido_paterno' => $validate['apellido_paterno'],
+                    'str_apellido_materno' => $validate['apellido_materno'],
+                    'dt_fecha_nacimiento' => $validate['fecha_nacimiento'],
+                    'str_estado_nacimiento' => $validate['estado_nacimiento'],
+                    'str_municipio_nacimiento' => $validate['municipio_nacimiento'],
+                    'str_sexo' => $validate['sexo_usuario'],
+                    'bl_mayahablante' => $validate['mayahablante'],
                     'str_correo_electronico' => $validate['email_usuario'],
-                    'str_tel_celular'        => $validate['telefono_usuario'],
-                    'estado_perfil_usuario'   => $validate['estado_perfil_usuario'],
-                    'estado_candidato'       => $validate['estado_candidato'],
+                    'str_tel_celular' => $validate['telefono_usuario'],
+                    'estado_perfil_usuario' => $validate['estado_perfil_usuario'],
+                    'estado_candidato' => $validate['estado_candidato'],
                 ]);
-            
-            
-    
-                $dato_fiscal = $persona-> dato_fiscal() -> create([
+
+
+
+                $dato_fiscal = $persona->dato_fiscal()->create([
                     'str_razon_social' => $validate['razon_social'],
                     'str_nombre_comercial' => $validate['nombre_comercial'],
                     'dt_tiempo_ejerciendo' => $validate['tiempo_ejerciendo'],
@@ -131,16 +129,16 @@ class Register extends Controller
                     //'fk_actividad_economica_id' => $validate['actividad_economica'],
                     'int_num_empleados' => $validate['numero_empleados'],
                 ]);
-    
-                // //Añadir registros adiconales
-                // $registros_adicionales = json_decode($validate['registros_json'], true);
-                // foreach( $registros_adicionales as $registro ) {
-                //     $dato_fiscal ->adicional()->create([
-                //         'str_nombre_registro_adicional' => $registro[0],
-                //         'str_clave_registro_adicional'=> $registro[1],
-                //     ]);
-                // }
-    
+
+                //Añadir registros adiconales
+                $registros_adicionales = json_decode($validate['registros_adicionales'], true);
+                foreach ($registros_adicionales as $registro) {
+                    $dato_fiscal->adicional()->create([
+                        'str_nombre_registro_adicional' => $registro[0],
+                        'str_clave_registro_adicional' => $registro[1],
+                    ]);
+                }
+
                 // //Añador informacion de domicilio
                 // $domicilios = json_decode($validate['domicilios_json'], true);
                 // foreach($domicilios as $domicilio){
@@ -151,7 +149,7 @@ class Register extends Controller
                 //         'str_localidad' => $domicilio[3]
                 //     ]);
                 // }
-    
+
                 // $productos_ventas = json_decode($validate['productos_json'], true);
                 // foreach( $productos_ventas as $producto ) {
                 //     $producto_ventas = $dato_fiscal -> productos_ventas() -> create([
@@ -162,7 +160,7 @@ class Register extends Controller
                 //         'int_venta_anual' => $producto[4]
                 //     ]);
                 // }
-    
+
                 // //Creacion de tabla redes sociales
                 // $red_social = $dato_fiscal -> red_social() -> create([
                 //     'str_facebook' => $validate['facebook_usuario'],
@@ -173,7 +171,7 @@ class Register extends Controller
                 //     'str_mercado_libre' => $validate['mercado_libre'],
                 //     'str_mercado_pago' => $validate['mercado_pago'],
                 // ]);
-    
+
                 // $red_adicional = json_decode($validate['medios_digitales_json'], true);
                 // foreach( $red_adicional as $red_social){
                 //     $red_social_adicional = $dato_fiscal -> redes_adicionales() -> create([
@@ -184,7 +182,7 @@ class Register extends Controller
             });
             return redirect()->route('register.create');
         }
-        
+
     }
 
     /**
