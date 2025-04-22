@@ -61,11 +61,11 @@ class Register extends Controller
             'razon_social' => ' nullable| string | max:50',
             'numero_empleados' => '| integer',
             'registro_impi' => 'nullable | string | max:11',
-            // -- falta la tabla de registros adicionales --
+            
             'registros_adicionales' => 'nullable| json',
 
-            // //DOMICILIOS
-            // 'domicilios_json' => 'nullable | json',
+            //DOMICILIOS
+            'domicilios_json' => 'nullable | json',
 
             // //PRODUCTOS Y VENTAS
             // 'productos_json'=>'nullable | json',
@@ -140,15 +140,15 @@ class Register extends Controller
                 }
 
                 // //Añador informacion de domicilio
-                // $domicilios = json_decode($validate['domicilios_json'], true);
-                // foreach($domicilios as $domicilio){
-                //     $domicilio_unitario = $dato_fiscal -> domicilio() -> create([
-                //         'str_direccion' => $domicilio[0],
-                //         'str_estado' => $domicilio[1],
-                //         'str_municipio' => $domicilio[2],
-                //         'str_localidad' => $domicilio[3]
-                //     ]);
-                // }
+                $domicilios = json_decode($validate['domicilios_json'], true);
+                foreach($domicilios as $domicilio){
+                    $domicilio_unitario = $dato_fiscal -> domicilio() -> create([
+                        'str_direccion' => $domicilio[0],
+                        'str_estado' => $domicilio[1],
+                        'str_municipio' => $domicilio[2],
+                        'str_localidad' => $domicilio[3]
+                    ]);
+                }
 
                 // $productos_ventas = json_decode($validate['productos_json'], true);
                 // foreach( $productos_ventas as $producto ) {
