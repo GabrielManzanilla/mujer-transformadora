@@ -70,16 +70,16 @@ class Register extends Controller
             // //PRODUCTOS Y VENTAS
             'productos_json'=>'nullable | json',
 
-            // //MEDIOS DIGITALES
-            // 'facebook_usuario' => ' nullable| string | max:50',
-            // 'facebook_empresarial' => 'nullable | string | max:50',
-            // 'facebook_marketplace' => ' nullable| string | max:50',
-            // 'pagina_web' => 'nullable | string | max:100',
-            // 'whatsapp_empresarial' => 'nullable | string | max:10',
-            // 'mercado_libre' => 'nullable | string | max:50',
-            // 'mercado_pago' => 'nullable | string | max:50',
-            // //tabla medios digitales adiconales
-            // 'medios_digitales_json' => 'nullable | json',
+            //MEDIOS DIGITALES
+            'facebook_usuario' => ' nullable| string | max:50',
+            'facebook_empresarial' => 'nullable | string | max:50',
+            'facebook_marketplace' => ' nullable| string | max:50',
+            'pagina_web' => 'nullable | string | max:100',
+            'whatsapp_empresarial' => 'nullable | string | max:10',
+            'mercado_libre' => 'nullable | string | max:50',
+            'mercado_pago' => 'nullable | string | max:50',
+            //tabla medios digitales adiconales
+            'medios_digitales_json' => 'nullable | json',
 
             // //DOCUMENTOS
             // 'ine_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
@@ -130,14 +130,17 @@ class Register extends Controller
                     'int_num_empleados' => $validate['numero_empleados'],
                 ]);
 
-                //Añadir registros adiconales
-                $registros_adicionales = json_decode($validate['registros_adicionales'], true);
-                foreach ($registros_adicionales as $registro) {
-                    $dato_fiscal->adicional()->create([
-                        'str_nombre_registro_adicional' => $registro[0],
-                        'str_clave_registro_adicional' => $registro[1],
-                    ]);
+                if($validate['registros_adicionales'] != null){
+                    //Añadir registros adiconales
+                    $registros_adicionales = json_decode($validate['registros_adicionales'], true);
+                    foreach ($registros_adicionales as $registro) {
+                        $dato_fiscal->adicional()->create([
+                            'str_nombre_registro_adicional' => $registro[0],
+                            'str_clave_registro_adicional' => $registro[1],
+                        ]);
+                    }
                 }
+                    
 
                 // Añador informacion de domicilio
                 $domicilios = json_decode($validate['domicilios_json'], true);
@@ -163,24 +166,26 @@ class Register extends Controller
                     ]);
                 }
 
-                // //Creacion de tabla redes sociales
-                // $red_social = $dato_fiscal -> red_social() -> create([
-                //     'str_facebook' => $validate['facebook_usuario'],
-                //     'str_facebook_empresarial' => $validate['facebook_empresarial'],
-                //     'str_facebook_marketplace' => $validate['facebook_marketplace'],
-                //     'str_pagina_web' => $validate['pagina_web'],
-                //     'str_whatsapp_bussines' => $validate['whatsapp_empresarial'],
-                //     'str_mercado_libre' => $validate['mercado_libre'],
-                //     'str_mercado_pago' => $validate['mercado_pago'],
-                // ]);
+                //Creacion de tabla redes sociales
+                $red_social = $dato_fiscal -> red_social() -> create([
+                    'str_facebook' => $validate['facebook_usuario'],
+                    'str_facebook_empresarial' => $validate['facebook_empresarial'],
+                    'str_facebook_marketplace' => $validate['facebook_marketplace'],
+                    'str_pagina_web' => $validate['pagina_web'],
+                    'str_whatsapp_bussines' => $validate['whatsapp_empresarial'],
+                    'str_mercado_libre' => $validate['mercado_libre'],
+                    'str_mercado_pago' => $validate['mercado_pago'],
+                ]);
 
-                // $red_adicional = json_decode($validate['medios_digitales_json'], true);
-                // foreach( $red_adicional as $red_social){
-                //     $red_social_adicional = $dato_fiscal -> redes_adicionales() -> create([
-                //         'str_nombre_red_social' => $red_social[0],
-                //         'str_nombre_perfil' => $red_social[1]
-                //     ]);
-                // }
+                if ($validate['medios_digitales_json'] != null) {
+                    $red_adicional = json_decode($validate['medios_digitales_json'], true);
+                    foreach( $red_adicional as $red_social_adicional){
+                        $red_social_adicional = $red_social -> redes_adicionales() -> create([
+                            'str_nombre_red_social' => $red_social_adicional[0],
+                            'str_nombre_perfil' => $red_social_adicional[1]
+                        ]);
+                    }
+                }
             });
             return redirect()->route('register.create');
         }

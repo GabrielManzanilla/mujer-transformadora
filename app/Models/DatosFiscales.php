@@ -57,4 +57,9 @@ class DatosFiscales extends Model
         return $this->hasMany(Producto::class, 'fk_dato_fiscal_id', 'pk_dato_fiscal_id');
     }
     
+    public function red_social()
+    {
+        return $this->hasOne(RedesSociales::class, 'fk_dato_fiscal_id', 'pk_dato_fiscal_id');
+    }
+
 }
