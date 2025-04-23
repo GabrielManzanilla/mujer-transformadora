@@ -51,5 +51,10 @@ class DatosFiscales extends Model
     {
         return $this->hasMany(Domicilio::class, 'fk_dato_fiscal_id', 'pk_dato_fiscal_id');
     }
+
+    public function productos_ventas()
+    {
+        return $this->hasMany(Producto::class, 'fk_dato_fiscal_id', 'pk_dato_fiscal_id');
+    }
     
 }

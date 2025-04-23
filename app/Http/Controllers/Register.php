@@ -68,7 +68,7 @@ class Register extends Controller
             'domicilios_json' => 'nullable | json',
 
             // //PRODUCTOS Y VENTAS
-            // 'productos_json'=>'nullable | json',
+            'productos_json'=>'nullable | json',
 
             // //MEDIOS DIGITALES
             // 'facebook_usuario' => ' nullable| string | max:50',
@@ -139,7 +139,7 @@ class Register extends Controller
                     ]);
                 }
 
-                // //Añador informacion de domicilio
+                // Añador informacion de domicilio
                 $domicilios = json_decode($validate['domicilios_json'], true);
                 foreach($domicilios as $domicilio){
                     $domicilio_unitario = $dato_fiscal -> domicilio() -> create([
@@ -150,16 +150,18 @@ class Register extends Controller
                     ]);
                 }
 
-                // $productos_ventas = json_decode($validate['productos_json'], true);
-                // foreach( $productos_ventas as $producto ) {
-                //     $producto_ventas = $dato_fiscal -> productos_ventas() -> create([
-                //         'str_nombre_producto' => $producto[0],
-                //         'str_descripcion_producto' => $producto[1],
-                //         'int_produccion_mensual' => $producto[2],
-                //         'int_venta_mensual' => $producto[3],
-                //         'int_venta_anual' => $producto[4]
-                //     ]);
-                // }
+
+                // Añacion de productos y ventas
+                $productos_ventas = json_decode($validate['productos_json'], true);
+                foreach( $productos_ventas as $producto ) {
+                    $producto_ventas = $dato_fiscal -> productos_ventas() -> create([
+                        'str_nombre_producto' => $producto[0],
+                        'str_descripcion_producto' => $producto[1],
+                        'int_produccion_mensual' => $producto[2],
+                        'int_venta_mensual' => $producto[3],
+                        'int_venta_anual' => $producto[4]
+                    ]);
+                }
 
                 // //Creacion de tabla redes sociales
                 // $red_social = $dato_fiscal -> red_social() -> create([
