@@ -53,6 +53,7 @@
         </div>
         <div  class="flex flex-col justify-center items-center mt-10">
             <h1 class="text-2xl font-extrabold tracking-wider uppercase font-sans">bienvenido</h1>
+            <p class="mx-4 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ratione sunt placeat laboriosam voluptatibus animi. Aperiam illum vitae reprehenderit nesciunt doloribus omnis soluta voluptates officiis a culpa magnam quia eveniet animi, illo cupiditate perspiciatis laudantium eligendi sed corporis possimus sapiente, fugiat incidunt distinctio ratione! Rerum quaerat, cumque excepturi repudiandae voluptate quidem iusto adipisci illum vero perspiciatis unde aliquid dolorum delectus cupiditate est odio quo eaque. Placeat iste voluptatibus accusamus excepturi magni tempore adipisci eos illo iure hic, temporibus, alias maxime nulla explicabo, doloribus ea earum voluptates veniam assumenda dolorum quasi enim sit a nisi? Excepturi eligendi ad veritatis placeat odit.</p>
         </div>
     </div>
 @endsection

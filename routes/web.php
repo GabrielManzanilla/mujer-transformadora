@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PersonaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Register;
 
@@ -12,4 +13,5 @@ Route::get('about/', function () {
 
 Route::resource('register', Register::class);
 
+Route::resource('/usuarios', PersonaController::class);
 
