@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\DatosFiscales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,8 @@ class Register extends Controller
     public function index()
     {
         //
-
+        $registros = DatosFiscales::all();
+        return view("registro.index", compact("registros"));
     }
 
     /**
@@ -24,7 +26,7 @@ class Register extends Controller
      */
     public function create()
     {
-        return view("registro");
+        return view("registro.registro");
     }
 
     /**

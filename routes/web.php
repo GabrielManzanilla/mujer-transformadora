@@ -11,7 +11,7 @@ Route::get('about/', function () {
     return view('about');
 });
 
-Route::resource('register', Register::class);
+Route::resource('/register', Register::class);
 
 Route::resource('/usuarios', PersonaController::class);
 
