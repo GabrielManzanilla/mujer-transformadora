@@ -37,9 +37,8 @@
 			</div>
 			<div class="flex-col flex-1 md:flex-4 h-full w-full relative py-2 ">
 				<div class="block h-full w-full overflow-auto pb-26 ocultar-scroll" id="stepsForm">
-					<fieldset class="step hidden border border-gray-300 p-2 rounded-lg mb-4" data-step="1">
-						<legend class="text-lg font-medium px-2">Datos Personales</legend>
-						<div class="mb-4">
+					<x-fieldset title="Datos Personales" etapa="1">
+					<div class="mb-4">
 							<label class="block text-sm font-medium text-gray-700 mb-1">CURP</label>
 							<div class="flex">
 								<input type="text" name="curp_usuario" id="curp_usuario"
@@ -118,7 +117,7 @@
 								</select>
 
 							</div>
-					</fieldset>
+					</x-fieldset>
 
 					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4 overflow-x-hidden" data-step="2">
 						<legend class="text-lg font-medium px-2">Datos Fiscales</legend>
