@@ -42,57 +42,79 @@
 			<div class="hidden w-full lg:block md:w-auto" id="navbar-default">
 				<ul
 					class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-[#6D1528] md:dark:bg-[#6D1528] dark:border-gray-700">
-					<li>
+					<li class="py-2">
 						<a href="/mujer-transformadora/public/"
 							class="block py-2 px-3 text-white bg-[#c2995c] rounded-sm md:bg-transparent md:text-[#c2995c] md:p-0 dark:text-white md:dark:text-[#c2995c]"
 							aria-current="page">Home</a>
 					</li>
-					<li>
+					<li class="py-2">
 						<a href="/mujer-transformadora/public/about/"
-							class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-white md:dark:hover:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+							class="block text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-white md:dark:hover:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
 					</li>
-					<li>
-						<a href="{{ route('register.create') }}"
-							class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-white md:dark:hover:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Registro</a>
-					</li>
-					<li>
+					<li class="py-2">
 						<a href="/contactos/"
-							class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-white md:dark:hover:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contactos</a>
+							class="block  text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-white md:dark:hover:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contactos</a>
 					</li>
-					<li>
-						<button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-							class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-gray-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Consultas
-							<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-								viewBox="0 0 10 6">
-								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-									d="m1 1 4 4 4-4" />
-							</svg></button>
-						<!-- Dropdown menu -->
-						<div id="dropdownNavbar"
-							class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-[#6D1528] dark:divide-gray-200">
-							<ul class="py-2 text-sm text-white dark:text-white" aria-labelledby="dropdownLargeButton">
-								<li>
-									<a href={{ route('usuarios.index') }}
-										class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Usuarios</a>
-								</li>
-								<li>
-									<a href="#"
-										class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buscar Usuario</a>
-								</li>
-							</ul>
-							<div class="py-1">
-							<ul class="py-2 text-sm text-white dark:text-white" aria-labelledby="dropdownLargeButton">
-								<li>
-									<a href="{{ route('register.index') }}"
-										class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registros</a>
-								</li>
-								<li>
-									<a href="#"
-										class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buscar Registro</a>
-								</li>	
+					@auth
+						<li class="py-2 ">
+							<a href="{{ route('register.create') }}"
+								class="block text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-white md:dark:hover:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Registro</a>
+						</li>
+						@if(Auth::user()->isAdmin())
+						<li class="py-2">
+							<button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+								class="flex items-center justify-between w-full text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-gray-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Consultas
+								<sclass="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+									viewBox="0 0 10 6">
+									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="m1 1 4 4 4-4" />
+								</sclass=></button>
+							<!-- Dropdown menu -->
+							<div id="dropdownNavbar"
+								class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-[#6D1528] dark:divide-gray-200">
+								<ul class="py-2 text-sm text-white dark:text-white" aria-labelledby="dropdownLargeButton">
+									<li>
+										<a href={{ route('usuarios.index') }}
+											class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Usuarios</a>
+									</li>
+									<li>
+										<a href="#" class="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buscar
+											Usuario</a>
+									</li>
+								</ul>
+								<div class="py-1">
+									<ul class="py-2 text-sm text-white dark:text-white" aria-labelledby="dropdownLargeButton">
+										<li>
+											<a href="{{ route('register.index') }}"
+												class="block  py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registros</a>
+										</li>
+										<li>
+											<a href="#"
+												class="block  py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buscar
+												Registro</a>
+										</li>
+								</div>
 							</div>
-						</div>
-					</li>
+						</li>
+						@endif
+						<li>
+							<a href="{{ route('logout') }}" class="bg-[#c2995c] text-white font-semibold py-2 px-3 rounded-md">Cerrar
+								Secion</a>
+						</li>
+
+						
+					@endauth
+					@guest
+						<li class="py-2">
+							<a href="{{ route('login') }}"
+								class="block py-2  text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-white md:dark:hover:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Iniciar
+								Secion</a>
+						</li>
+						<li>
+							<a href="{{ route('registro') }}"
+								class="bg-[#c2995c] text-white font-semibold py-2 px-3 rounded-md">Registrarse</a>
+						</li>
+					@endguest
 
 				</ul>
 			</div>

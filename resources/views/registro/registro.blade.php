@@ -20,7 +20,7 @@
 		</script>
 	@endif
 
-	<div class="w-full h-full px-1 md:px-4 pt-4">
+	<div class="w-full h-full px-1 md:px-4 pt-4">	
 
 		<div class="w-full bg-gray-200 rounded-full h-5 dark:bg-gray-400">
 			<div id="progress_bar" class="bg-[#6D1528] h-5 rounded-full text-center text-[#c2995c] font-bold pb-5"
