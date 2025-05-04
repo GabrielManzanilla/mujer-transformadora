@@ -21,7 +21,7 @@ class RedesSociales extends Model
         'str_mercado_libre',
         'str_mercado_pago',
 
-        'fk_dato_fiscal_id'
+        'fk_inscripcion_id'
     ];
 
     protected static function boot()
@@ -36,7 +36,7 @@ class RedesSociales extends Model
     }
     public function datos_fiscales()
     {
-        return $this->belongsTo(DatosFiscales::class, 'fk_dato_fiscal_id', 'pk_dato_fiscal_id');
+        return $this->belongsTo(DatosFiscales::class, 'fk_inscripcion_id', 'pk_inscripcion_id');
     }
     public function redes_adicionales()
     {

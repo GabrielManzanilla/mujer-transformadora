@@ -37,89 +37,7 @@
 			</div>
 			<div class="flex-col flex-1 md:flex-4 h-full w-full relative py-2 ">
 				<div class="block h-full w-full overflow-auto pb-26 ocultar-scroll" id="stepsForm">
-					<x-fieldset title="Datos Personales" etapa="1">
-					<div class="mb-4">
-							<label class="block text-sm font-medium text-gray-700 mb-1">CURP</label>
-							<div class="flex">
-								<input type="text" name="curp_usuario" id="curp_usuario"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									required>
-								<button type="button"
-									class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-r-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									id="search_curp_btn">Buscar</button>
-							</div>
-							<div id="curpHelp" class="mt-1 text-sm text-gray-500">Proporcione el curp para realizar la busqueda
-							</div>
-						</div>
-						<div class="mb-4">
-							<label class="block text-sm font-medium text-gray-700 mb-1">Nombre
-								Completo</label>
-							<div class="flex gap-2 flex-wrap">
-								<input type="text" name="apellido_paterno" id="apellido_paterno"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Apellido Paterno">
-								<input type="text" name="apellido_materno" id="apellido_materno"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Apellido Materno">
-								<input type="text" name="nombres_usuario" id="nombres_usuario"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Nombre(s)">
-							</div>
-						</div>
-						<div class="mb-4">
-							<label class="block text-sm font-medium text-gray-700 mb-1">Lugar de
-								Nacimiento</label>
-							<div class="flex gap-2 flex-wrap">
-								<select name="municipio_nacimiento" id="municipio_nacimiento"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-									<option selected>Municipio</option>
-								</select>
-								<select name="estado_nacimiento" id="estado_nacimiento"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-									<option selected>Estado</option>
-								</select>
-								<input name="fecha_nacimiento" id="fecha_nacimiento"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									type="date">
-							</div>
-						</div>
-						<div class="mb-4">
-							<label for="sexo_usuario" class="block text-sm font-medium text-gray-700 mb-1">Seleccione su
-								Sexo</label>
-							<select name="sexo_usuario" id="sexo_usuario"
-								class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-								<option selected>Sexo</option>
-								<option value="Mujer">Mujer</option>
-								<option value="Hombre">Hombre</option>
-							</select>
-							<div class="mt-2 flex items-center">
-								<input type="hidden" name="mayahablante" id="mayahablante" value="0">
-								<input class="h-4 w-4 text-[#6D1528] focus:ring-[#6D1528] border-gray-300 rounded" type="checkbox"
-									id="mayahablante" name="mayahablante" value="1">
-								<label for="mayahablante" class="ml-2 block text-sm text-gray-700">Maya hablante</label>
-							</div>
-							<div class="flex gap-2 flex-wrap mt-2">
-								<input type="email_usuario" name="email_usuario" id="email_user"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Email">
-								<input type="tel" name="telefono_usuario" id="tel_usuario"
-									class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Número Telefonico">
-							</div>
-							<div class="mt-2 flex gap-2 flex-wrap">
-								<select id="estado_perfil_usuario" name="estado_perfil_usuario"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-									<option selected value="Activo">Estado Perfil</option>
-								</select>
-								<select id="estado_candidato" name="estado_candidato"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-									<option selected>Candidato</option>
-								</select>
-
-							</div>
-					</x-fieldset>
-
-					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4 overflow-x-hidden" data-step="2">
+					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4 overflow-x-hidden" data-step="1">
 						<legend class="text-lg font-medium px-2">Datos Fiscales</legend>
 						<div class="flex flex-col w-full md:flex-row gap-2">
 							<div class="mb-4 md:flex-1">
@@ -245,7 +163,7 @@
 
 					</fieldset>
 
-					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4 " data-step="3">
+					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4 " data-step="2">
 						<legend class="text-lg font-medium px-2">Domicilio(s)</legend>
 						<div class="mb-4 ">
 							<div class="mb-4">
@@ -315,7 +233,7 @@
 						</div>
 					</fieldset>
 
-					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4 overflow-x-hidden" data-step="4">
+					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4 overflow-x-hidden" data-step="3">
 						<legend class="text-lg font-medium px-2">Produccion y Ventas</legend>
 						<div class="flex flex-col w-full flex-wrap md:flex-row gap-2">
 							<input type="text" id="nombre_producto" name="nombre_producto"
@@ -377,7 +295,7 @@
 
 					</fieldset>
 
-					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4" data-step="5">
+					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4" data-step="4">
 						<legend class="text-lg font-medium px-2">Medios Digitales</legend>
 						<div class="flex flex-col w-full md:flex-row gap-2">
 							<div class="mb-4 md:flex-1">
@@ -472,7 +390,7 @@
 						</div>
 					</fieldset>
 
-					<fieldset class="step border border-gray-300 p-4 rounded-lg mb-4" data-step="6">
+					<fieldset class="step border border-gray-300 p-4 rounded-lg mb-4" data-step="5">
 						<legend class="text-lg font-medium px-2">Carga de Archivos</legend>
 						<div class="flex flex-col w-full md:flex-row gap-2">
 							<div class="mb-4 flex-1">

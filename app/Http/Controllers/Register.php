@@ -39,20 +39,6 @@ class Register extends Controller
         //
 
         $validate = Validator::make($request->all(), [
-            // DATOS PERSONALES
-            'nombres_usuario' => 'nullable | string|max:50',
-            'apellido_paterno' => 'nullable | string|max:50',
-            'apellido_materno' => 'nullable | string|max:50',
-            'curp_usuario' => 'nullable | string|max:18',
-            'municipio_nacimiento' => 'nullable | string',
-            'estado_nacimiento' => 'nullable | string',
-            'fecha_nacimiento' => 'nullable | date',
-            'sexo_usuario' => 'nullable | string',
-            'mayahablante' => 'nullable | boolean',
-            'email_usuario' => 'nullable | email',
-            'telefono_usuario' => 'nullable | string|max:10',
-            'estado_perfil_usuario' => 'nullable | string',
-            'estado_candidato' => 'nullable | string',
 
             //DATOS FISCALES
             'actividad_economica' => ' nullable| string',
@@ -103,25 +89,11 @@ class Register extends Controller
         } else {
             $validate = $validate->validated();
             DB::transaction(function () use ($validate) {
-                $persona = Persona::create([
-                    'str_curp' => $validate['curp_usuario'],
-                    'str_nombre' => $validate['nombres_usuario'],
-                    'str_apellido_paterno' => $validate['apellido_paterno'],
-                    'str_apellido_materno' => $validate['apellido_materno'],
-                    'dt_fecha_nacimiento' => $validate['fecha_nacimiento'],
-                    'str_estado_nacimiento' => $validate['estado_nacimiento'],
-                    'str_municipio_nacimiento' => $validate['municipio_nacimiento'],
-                    'str_sexo' => $validate['sexo_usuario'],
-                    'bl_mayahablante' => $validate['mayahablante'],
-                    'str_correo_electronico' => $validate['email_usuario'],
-                    'str_tel_celular' => $validate['telefono_usuario'],
-                    'estado_perfil_usuario' => $validate['estado_perfil_usuario'],
-                    'estado_candidato' => $validate['estado_candidato'],
-                ]);
+                
 
+                $user= Auth::user();
 
-
-                $dato_fiscal = $persona->dato_fiscal()->create([
+                $dato_fiscal = $user->dato_fiscal()->create([
                     'str_razon_social' => $validate['razon_social'],
                     'str_nombre_comercial' => $validate['nombre_comercial'],
                     'dt_tiempo_ejerciendo' => $validate['tiempo_ejerciendo'],
@@ -191,7 +163,7 @@ class Register extends Controller
                     }
                 }
             });
-            return redirect()->route('register.create');
+            return redirect()->route('registers');
         }
 
     }
