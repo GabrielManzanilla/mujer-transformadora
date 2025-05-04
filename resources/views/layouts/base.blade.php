@@ -57,7 +57,7 @@
 					</li>
 					@auth
 						<li class="py-2 ">
-							<a href="{{ route('register.create') }}"
+							<a href="{{ route('registers') }}"
 								class="block text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-white md:dark:hover:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Registro</a>
 						</li>
 						@if(Auth::user()->isAdmin())

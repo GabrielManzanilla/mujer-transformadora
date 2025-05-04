@@ -34,8 +34,8 @@ return new class extends Migration
             $table ->integer("int_num_empleados");
 
             //llamado a la tabla tb_personas
-            $table->uuid("fk_persona_id");
-            $table->foreign("fk_persona_id")->references("pk_persona_id")->on("tb_personas")->onDelete("cascade");
+            $table->uuid("fk_user_id");
+            $table->foreign("fk_user_id")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
             });
 

@@ -60,6 +60,9 @@ class User extends Authenticatable
     public function perfil(){
         return $this->hasOne(Persona::class, 'fk_user_id', 'id');
     }
+    public function dato_fiscal(){
+        return $this->hasMany(DatosFiscales::class, 'fk_user_id', 'id');
+    }
 
     
 }

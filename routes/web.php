@@ -10,8 +10,8 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('make.login');
-Route::get('/registro', [AuthController::class,'showRegister'])->name('registro');
-Route::post('/registro', [AuthController::class, 'register'])->name('make.register'); 
+Route::get('/registro', [AuthController::class, 'showRegister'])->name('registro');
+Route::post('/registro', [AuthController::class, 'register'])->name('make.register');
 
 
 
@@ -27,9 +27,11 @@ Route::get('about/', function () {
 Route::resource('/usuarios', PersonaController::class);
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('/register', Register::class );
+    Route::get('/register', [Register::class, 'index'])->name('registers');
+    Route::get('/register/form', [Register::class, 'create'])->name('show.register');
+    Route::post('/register', [Register::class, 'store'])->name('register.store');
     Route::get('perfil', [datos_personales::class, 'index'])->name('perfil');
     Route::get('perfil/editar', [datos_personales::class, 'edit'])->name('actualizar.perfil');
     Route::put('perfil/editar', [datos_personales::class, 'update'])->name('make.update');
-    
+
 });

@@ -23,7 +23,7 @@ class DatosFiscales extends Model
         'str_clave_affy',
         'str_clave_imss',
         'int_num_empleados',
-        'fk_persona_id',
+        'fk_user_id',
         // 'fk_regimen_id',
         // 'fk_actividad_economica_id',
     ];
@@ -38,9 +38,9 @@ class DatosFiscales extends Model
         });
     }
 
-    public function persona()
+    public function user()
     {
-        return $this->belongsTo(Persona::class, 'fk_persona_id', 'pk_persona_id');
+        return $this->belongsTo(User::class, 'fk_user_id', 'id');
     }
 
     public function adicional(){

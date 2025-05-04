@@ -5,6 +5,7 @@ use App\Models\DatosFiscales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 //importacion de models
 use App\Models\Persona;
@@ -17,8 +18,9 @@ class Register extends Controller
     public function index()
     {
         //
-        $registros = DatosFiscales::all();
-        return view("registro.index", compact("registros"));
+        $user = Auth::user();
+        $registros = $user->dato_fiscal;
+        return view('registro.index', ['registros' => $registros]);
     }
 
     /**

@@ -29,10 +29,6 @@ class Persona extends Model
         return $this->belongsTo(User::class, 'fk_user_id', 'id');
     }
 
-    public function dato_fiscal(){
-        return $this->hasOne(DatosFiscales::class, 'fk_persona_id', 'pk_persona_id');
-    }
-
     protected static function boot(){
         parent::boot();
         static::creating(function ($model) {
