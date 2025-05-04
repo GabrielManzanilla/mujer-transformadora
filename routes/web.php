@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\datos_personales;
 use App\Http\Controllers\PersonaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Register;
@@ -27,4 +28,8 @@ Route::resource('/usuarios', PersonaController::class);
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/register', Register::class );
+    Route::get('perfil', [datos_personales::class, 'index'])->name('perfil');
+    Route::get('perfil/editar', [datos_personales::class, 'edit'])->name('actualizar.perfil');
+    Route::put('perfil/editar', [datos_personales::class, 'update'])->name('make.update');
+    
 });
