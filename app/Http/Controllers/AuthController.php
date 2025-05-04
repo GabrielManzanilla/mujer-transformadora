@@ -39,18 +39,40 @@ class AuthController
     public function register(Request $request)
     {
         $request->validate([
-            'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:6', 'confirmed'], // espera campo password_confirmation
+            'password' => ['required', 'min:6', 'confirmed'], 
+
+            //datos personales
+            'nombres' => 'nullable | string|max:50',
+            'apellido_paterno' => 'nullable | string|max:50',
+            'apellido_materno' => 'nullable | string|max:50',
+            'curp' => 'nullable | string|max:18',
+            'municipio_nacimiento' => 'nullable | string',
+            'estado_nacimiento' => 'nullable | string',
+            'fecha_nacimiento' => 'nullable | date',
+            'sexo' => 'nullable | string',
+            'mayahablante' => 'nullable | boolean',
+            'telefono' => 'nullable | string|max:10',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        $perfil=$user->perfil()->create([
+            'str_nombre' => $request->nombres,
+            'str_apellido_paterno' => $request->apellido_paterno,
+            'str_apellido_materno' => $request->apellido_materno,
+            'str_curp' => $request->curp,
+            'str_estado_nacimiento' => $request->estado_nacimiento,
+            'str_municipio_nacimiento' => $request->municipio_nacimiento,
+            'dt_fecha_nacimiento' => $request->fecha_nacimiento,
+            'str_sexo' => $request->sexo,
+            'bl_mayahablante' => $request->mayahablante,
+            'str_tel_celular' => $request->telefono,
+        ]);
 
-        Auth::login($user); // lo loguea automáticamente
+        Auth::loginUsingId($user->id); // lo loguea automáticamente
 
         return redirect('/'); //RUTA POR CAMBIAR PARA USAURIO
     }

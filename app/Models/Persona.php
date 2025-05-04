@@ -25,6 +25,9 @@ class Persona extends Model
         'str_tel_celular',
         'estado_perfil',
     ];
+    public function user(){
+        return $this->belongsTo(User::class, 'fk_user_id', 'id');
+    }
 
     public function dato_fiscal(){
         return $this->hasOne(DatosFiscales::class, 'fk_persona_id', 'pk_persona_id');

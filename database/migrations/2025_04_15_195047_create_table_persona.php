@@ -28,7 +28,7 @@ return new class extends Migration
             //falta añadir los documentos del usuario
 
             //conexion con la tabla de usuers
-            $table->unsignedBigInteger("fk_user_id");
+            $table->uuid("fk_user_id");
             $table->foreign("fk_user_id")->references("id")->on("users")->onDelete("cascade");
 
             //llamado al cat_candidato
