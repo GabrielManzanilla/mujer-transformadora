@@ -22,13 +22,18 @@ return new class extends Migration
             $table->string("str_municipio_nacimiento");
             $table ->enum("str_sexo", ["Hombre", "Mujer"]); 
             $table -> boolean("bl_mayahablante")->default(false);
-            $table->string("str_correo_electronico");
             $table->string("str_tel_celular");
-            $table ->enum("estado_perfil", ["Activo","En espera", "Desactivado"]) ->default("Activo");
+            $table ->enum("estado_perfil", ["Activo","En espera","Datos Incompletos", "Desactivado"]) ->default("En espera");
+
+            //falta añadir los documentos del usuario
+
+            //conexion con la tabla de usuers
+            $table->unsignedBigInteger("fk_user_id");
+            $table->foreign("fk_user_id")->references("id")->on("users")->onDelete("cascade");
 
             //llamado al cat_candidato
-            $table ->unsignedBigInteger("fk_candidato_id") ->nullable();
-            $table ->foreign("fk_candidato_id")->references("pk_candidato_id")->on("cat_candidato")->onDelete("cascade");
+            // $table ->unsignedBigInteger("fk_candidato_id") ->nullable();
+            // $table ->foreign("fk_candidato_id")->references("pk_candidato_id")->on("cat_candidato")->onDelete("cascade");
             
             $table->timestamps();
         });

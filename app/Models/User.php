@@ -52,4 +52,8 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    public function perfil(){
+        return $this->hasOne(Persona::class, 'fk_user_id', 'id');
+    }
 }

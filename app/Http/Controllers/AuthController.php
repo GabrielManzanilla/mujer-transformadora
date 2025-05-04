@@ -41,7 +41,7 @@ class AuthController
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:6'], // espera campo password_confirmation
+            'password' => ['required', 'min:6', 'confirmed'], // espera campo password_confirmation
         ]);
 
         $user = User::create([
