@@ -20,15 +20,19 @@
 		</script>
 	@endif
 
-	<div class="w-full h-full px-1 md:px-4 pt-4">	
+	<div class="w-full h-full px-1 md:px-4 pt-4">
 
 		<div class="w-full bg-gray-200 rounded-full h-5 dark:bg-gray-400">
 			<div id="progress_bar" class="bg-[#6D1528] h-5 rounded-full text-center text-[#c2995c] font-bold pb-5"
 				style="width: 0%">0%</div>
 		</div>
-		<form form action="{{ route('register.store') }}" method="post" id="registerForm"
-			class="flex flex-row w-full h-full gap-2 md:px-5 max-w-screen">
+		<form
+			action="{{ isset($datosFiscales) ? route('update.register', $datosFiscales->pk_inscripcion_id) : route('make.register') }}"
+			method="post" id="registerForm" class="flex flex-row w-full h-full gap-2 md:px-5 max-w-screen">
 			@csrf
+			@if(isset($datosFiscales))
+				@method('PUT')
+			@endif
 			<div class="flex flex-col flex-0 mt-8">
 				<div class="w-full">
 					<ul id="indicatorsSection" class="w-full text-lg space-y-2">
@@ -46,7 +50,8 @@
 									Actividad economica</label>
 								<select id="actividad_economica" name="actividad_economica_usuario"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-									<option selected>Actividad Economica</option>
+									<option value="">Actividad Economica</option>
+
 								</select>
 							</div>
 							<div class="mb-4 md:flex-1">
@@ -54,6 +59,7 @@
 								<select id="regimen_fiscal" name="regimen_fiscal"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 									<option selected>Regimen</option>
+
 								</select>
 							</div>
 
@@ -63,13 +69,15 @@
 								<label for="nombre_comercial" class="block text-sm font-medium text-gray-700 mb-1">Nombre
 									comercial</label>
 								<input type="text" id="nombre_comercial" name="nombre_comercial"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									value="{{ old('str_nombre_comercial', $datosFiscales->str_nombre_comercial ?? '') }}">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="tiempo_ejerciendo" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Inicio
 									Labores</label>
 								<input type="date" id="tiempo_ejerciendo" name="tiempo_ejerciendo"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									value="{{ old('dt_tiempo_ejerciendo', $datosFiscales->dt_tiempo_ejerciendo ?? '') }}">
 							</div>
 						</div>
 						<div class="flex flex-col w-full md:flex-row gap-2">
@@ -78,14 +86,16 @@
 									patronal
 									(IMSS)</label>
 								<input type="text" id="registro_imss" name="registro_imss"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									value="{{ old('str_clave_imss', $datosFiscales->str_clave_imss ?? '') }}">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="registro_affy" class="block text-sm font-medium text-gray-700 mb-1">Registro
 									estatal de
 									contribuyentes (AAFY)</label>
 								<input type="text" id="registro_affy" name="registro_affy"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									value="{{ old('str_clave_affy', $datosFiscales->str_clave_affy ?? '') }}">
 							</div>
 						</div>
 						<div class="flex flex-col w-full md:flex-row gap-2">
@@ -94,13 +104,15 @@
 									federal de
 									contribuyentes (RFC)</label>
 								<input type="text" id="rfc_usuario" name="rfc_usuario"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									value="{{ old('str_rfc', $datosFiscales->str_rfc ?? '') }}">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="razon_social" class="block text-sm font-medium text-gray-700 mb-1">Razon
 									Social</label>
 								<input type="text" id="razon_social" name="razon_social"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									value="{{ old('str_razon_social', $datosFiscales->str_razon_social ?? '') }}">
 							</div>
 						</div>
 						<div class="flex flex-col w-full md:flex-row gap-2">
@@ -108,14 +120,16 @@
 								<label for="numero_empleados" class="block text-sm font-medium text-gray-700 mb-1">Numero de
 									empleados</label>
 								<input type="number" id="numero_empleados" name="numero_empleados"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									value="{{ old('int_num_empleados', $datosFiscales->int_num_empleados ?? '') }}">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="registro_impi" class="block text-sm font-medium text-gray-700 mb-1">Registro de
 									marca
 									(IMPI)</label>
 								<input type="text" id="registro_impi" name="registro_impi"
-									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
+									value="{{ old('str_clave_impi', $datosFiscales->str_clave_impi ?? '') }}">
 							</div>
 						</div>
 						<div class="mb-4">
@@ -156,9 +170,9 @@
 										<td colspan="3" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
 											datos disponibles</td>
 									</tr>
-								</tbody>
-							</table>
-							<input type="hidden" name="registros_adicionales" id="registros_json">
+									<input type="text" name="registros_adicionales" id="registros_json" value="{{ old('registrosAdicionales', json_encode($registrosAdicionales ?? json_encode([]))) }}" class="">
+
+								</table>
 						</div>
 
 					</fieldset>
@@ -302,20 +316,23 @@
 								<label for="facebook_usuario" class="block text-sm font-medium text-gray-700 mb-1">Facebook</label>
 								<input type="text" id="facebook_usuario" name="facebook_usuario"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Facebook">
+									placeholder="Facebook"
+									value="{{ old('str_facebook', $redesSociales->str_facebook ?? '') }}">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="facebook_empresarial" class="block text-sm font-medium text-gray-700 mb-1">Facebook
 									Empresarial</label>
 								<input type="text" id="facebook_empresarial" name="facebook_empresarial"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Facebook Empresarial">
+									placeholder="Facebook Empresarial"
+									value="{{ old('str_facebook_empresarial', $redesSociales->str_facebook_empresarial ?? '') }}">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="facebook_marketplace" class="block text-sm font-medium text-gray-700 mb-1">Marketplace</label>
 								<input type="text" id="facebook_marketplace" name="facebook_marketplace"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Marketplace">
+									placeholder="Marketplace"
+									value="{{ old('str_facebook_marketplace', $redesSociales->str_facebook_marketplace ?? '') }}">
 							</div>
 						</div>
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -323,14 +340,16 @@
 								<label for="pagina_web" class="block text-sm font-medium text-gray-700 mb-1">Pagina WEB</label>
 								<input type="text" id="pagina_web" name="pagina_web"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Pagina WEB">
+									placeholder="Pagina WEB"
+									value="{{ old('str_pagina_web', $redesSociales->str_pagina_web ?? '') }}">
 							</div>
 							<div class="mb-4">
 								<label for="whatsapp_empresarial" class="block text-sm font-medium text-gray-700 mb-1">Whatsapp
 									Empresarial</label>
 								<input type="text" id="whatsapp_empresarial" name="whatsapp_empresarial"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Whatsapp Empresarial">
+									placeholder="Whatsapp Empresarial"
+									value="{{ old('str_whatsapp_bussines', $redesSociales->str_whatsapp_bussines ?? '') }}">
 							</div>
 						</div>
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -338,13 +357,15 @@
 								<label for="mercado_libre" class="block text-sm font-medium text-gray-700 mb-1">Mercado Libre</label>
 								<input type="text" id="mercado_libre" name="mercado_libre"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Mercado Libre">
+									placeholder="Mercado Libre"
+									value="{{ old('str_mercado_libre', $redesSociales->str_mercado_libre ?? '') }}">
 							</div>
 							<div class="mb-4">
 								<label for="mercado_pago" class="block text-sm font-medium text-gray-700 mb-1">Mercado Pago</label>
 								<input type="text" id="mercado_pago" name="mercado_pago"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Mercado Pago">
+									placeholder="Mercado Pago"
+									value="{{ old('str_mercado_pago', $redesSociales->str_mercado_pago ?? '') }}">
 							</div>
 						</div>
 						<div class="mb-4">

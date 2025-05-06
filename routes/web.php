@@ -24,12 +24,17 @@ Route::get('about/', function () {
     return view('about');
 });
 
-Route::resource('/usuarios', PersonaController::class);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/register', [Register::class, 'index'])->name('registers');
-    Route::get('/register/form', [Register::class, 'create'])->name('show.register');
-    Route::post('/register', [Register::class, 'store'])->name('register.store');
+
+    Route::get('register/', [Register::class, 'index'])->name('list.registers');
+    Route::get('/register/form', [Register::class, 'create'])->name('form.register');
+    Route::post('/register/form', [Register::class, 'store'])->name('make.register');
+    Route::get('/register/{id}', [Register::class, 'show'])->name('show.register');
+    Route::get('/register/{id}', [Register::class, 'show'])->name('show.register');
+    Route::get('/register/{id}/edit', [Register::class, 'edit'])->name('edit.register');
+    Route::put('/register/{id}/edit', [Register::class, 'update'])->name('update.register');
+   
     Route::get('perfil', [datos_personales::class, 'index'])->name('perfil');
     Route::get('perfil/editar', [datos_personales::class, 'edit'])->name('actualizar.perfil');
     Route::put('perfil/editar', [datos_personales::class, 'update'])->name('make.update');

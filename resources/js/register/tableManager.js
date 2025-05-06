@@ -51,15 +51,20 @@ export class TableManager{
 		optionsCell.appendChild(deleteButton);
 
 		// FUNCIONALIDAD DE EDITAR PARA PROXIMOS PLANES
-		// const editButton = document.createElement('button');
-		// editButton.textContent = 'Eliminar';
-		// editButton.classList.add('bg-green-500', 'rounded-md', 'text-white', 'font-bold', 'px-2', 'py-1', 
-		// 													 'hover:bg-green-700', 'hover:cursor-pointer');
-		// edit.addEventListener('click', () => {
-		// 	editar_registro();
-		// 	this.checkEmptyTable();
-		// }); 
-		// optionsCell.appendChild(editButton);
+		const editButton = document.createElement('button');
+		editButton.textContent = 'Editar';
+		editButton.classList.add('bg-green-500', 'rounded-md', 'text-white', 'font-bold', 'px-2', 'py-1', 
+		 													 'hover:bg-green-700', 'hover:cursor-pointer');
+		editButton.addEventListener('click', () => {
+		
+			this.inputs.forEach((input, index) => {
+				input.value = newRow.cells[index].textContent;
+			});
+			this.array_data.splice(newRow.rowIndex - 1, 1); // Eliminar la fila del array de datos
+			newRow.remove();
+			this.checkEmptyTable();
+		}); 
+		optionsCell.appendChild(editButton);
 	}
 
 

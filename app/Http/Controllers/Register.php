@@ -51,14 +51,14 @@ class Register extends Controller
             'razon_social' => ' nullable| string | max:50',
             'numero_empleados' => '| integer',
             'registro_impi' => 'nullable | string | max:11',
-            
+
             'registros_adicionales' => 'nullable| json',
 
             //DOMICILIOS
             'domicilios_json' => 'nullable | json',
 
             // //PRODUCTOS Y VENTAS
-            'productos_json'=>'nullable | json',
+            'productos_json' => 'nullable | json',
 
             //MEDIOS DIGITALES
             'facebook_usuario' => ' nullable| string | max:50',
@@ -79,8 +79,8 @@ class Register extends Controller
             // 'affy_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
             // 'impi_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
             // 'imss_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
-            // // -- tabla de documentos adicionales --  
-            // 'documentos_adicionales_json' => 'nullable | json'   
+            // // -- tabla de documentos adicionales --
+            // 'documentos_adicionales_json' => 'nullable | json'
         ]);
 
         if ($validate->fails()) {
@@ -89,9 +89,9 @@ class Register extends Controller
         } else {
             $validate = $validate->validated();
             DB::transaction(function () use ($validate) {
-                
 
-                $user= Auth::user();
+
+                $user = Auth::user();
 
                 $dato_fiscal = $user->dato_fiscal()->create([
                     'str_razon_social' => $validate['razon_social'],
@@ -106,7 +106,7 @@ class Register extends Controller
                     'int_num_empleados' => $validate['numero_empleados'],
                 ]);
 
-                if($validate['registros_adicionales'] != null){
+                if ($validate['registros_adicionales'] != null) {
                     //Añadir registros adiconales
                     $registros_adicionales = json_decode($validate['registros_adicionales'], true);
                     foreach ($registros_adicionales as $registro) {
@@ -116,54 +116,54 @@ class Register extends Controller
                         ]);
                     }
                 }
-                    
+
 
                 // Añador informacion de domicilio
-                $domicilios = json_decode($validate['domicilios_json'], true);
-                foreach($domicilios as $domicilio){
-                    $domicilio_unitario = $dato_fiscal -> domicilio() -> create([
-                        'str_direccion' => $domicilio[0],
-                        'str_estado' => $domicilio[1],
-                        'str_municipio' => $domicilio[2],
-                        'str_localidad' => $domicilio[3]
-                    ]);
-                }
+                // $domicilios = json_decode($validate['domicilios_json'], true);
+                // foreach ($domicilios as $domicilio) {
+                //     $domicilio_unitario = $dato_fiscal->domicilio()->create([
+                //         'str_direccion' => $domicilio[0],
+                //         'str_estado' => $domicilio[1],
+                //         'str_municipio' => $domicilio[2],
+                //         'str_localidad' => $domicilio[3]
+                //     ]);
+                // }
 
 
-                // Añacion de productos y ventas
-                $productos_ventas = json_decode($validate['productos_json'], true);
-                foreach( $productos_ventas as $producto ) {
-                    $producto_ventas = $dato_fiscal -> productos_ventas() -> create([
-                        'str_nombre_producto' => $producto[0],
-                        'str_descripcion_producto' => $producto[1],
-                        'int_produccion_mensual' => $producto[2],
-                        'int_venta_mensual' => $producto[3],
-                        'int_venta_anual' => $producto[4]
-                    ]);
-                }
+                // // Añacion de productos y ventas
+                // $productos_ventas = json_decode($validate['productos_json'], true);
+                // foreach ($productos_ventas as $producto) {
+                //     $producto_ventas = $dato_fiscal->productos_ventas()->create([
+                //         'str_nombre_producto' => $producto[0],
+                //         'str_descripcion_producto' => $producto[1],
+                //         'int_produccion_mensual' => $producto[2],
+                //         'int_venta_mensual' => $producto[3],
+                //         'int_venta_anual' => $producto[4]
+                //     ]);
+                // }
 
-                //Creacion de tabla redes sociales
-                $red_social = $dato_fiscal -> red_social() -> create([
-                    'str_facebook' => $validate['facebook_usuario'],
-                    'str_facebook_empresarial' => $validate['facebook_empresarial'],
-                    'str_facebook_marketplace' => $validate['facebook_marketplace'],
-                    'str_pagina_web' => $validate['pagina_web'],
-                    'str_whatsapp_bussines' => $validate['whatsapp_empresarial'],
-                    'str_mercado_libre' => $validate['mercado_libre'],
-                    'str_mercado_pago' => $validate['mercado_pago'],
-                ]);
+                // //Creacion de tabla redes sociales
+                // $red_social = $dato_fiscal->red_social()->create([
+                //     'str_facebook' => $validate['facebook_usuario'],
+                //     'str_facebook_empresarial' => $validate['facebook_empresarial'],
+                //     'str_facebook_marketplace' => $validate['facebook_marketplace'],
+                //     'str_pagina_web' => $validate['pagina_web'],
+                //     'str_whatsapp_bussines' => $validate['whatsapp_empresarial'],
+                //     'str_mercado_libre' => $validate['mercado_libre'],
+                //     'str_mercado_pago' => $validate['mercado_pago'],
+                // ]);
 
-                if ($validate['medios_digitales_json'] != null) {
-                    $red_adicional = json_decode($validate['medios_digitales_json'], true);
-                    foreach( $red_adicional as $red_social_adicional){
-                        $red_social_adicional = $red_social -> redes_adicionales() -> create([
-                            'str_nombre_red_social' => $red_social_adicional[0],
-                            'str_nombre_perfil' => $red_social_adicional[1]
-                        ]);
-                    }
-                }
+                // if ($validate['medios_digitales_json'] != null) {
+                //     $red_adicional = json_decode($validate['medios_digitales_json'], true);
+                //     foreach ($red_adicional as $red_social_adicional) {
+                //         $red_social_adicional = $red_social->redes_adicionales()->create([
+                //             'str_nombre_red_social' => $red_social_adicional[0],
+                //             'str_nombre_perfil' => $red_social_adicional[1]
+                //         ]);
+                //     }
+                // }
             });
-            return redirect()->route('registers');
+            return redirect()->route('list.registers');
         }
 
     }
@@ -174,6 +174,18 @@ class Register extends Controller
     public function show(string $id)
     {
         //
+
+        $datosFiscales = DatosFiscales::with(['red_social', 'domicilio', 'productos_ventas'])->findOrFail($id);
+        $redesSociales = $datosFiscales->red_social;
+        $domicilios = $datosFiscales->domicilio;
+        $productos = $datosFiscales->productos_ventas;
+        $registrosAdicionales = $datosFiscales->adicional;
+        $mediosDigitalesAdicionales = $redesSociales->redes_adicionales;
+
+        return view('registro.show', [
+            'datosFiscales' => $datosFiscales,
+        ]);
+
     }
 
     /**
@@ -182,6 +194,22 @@ class Register extends Controller
     public function edit(string $id)
     {
         //
+        $datosFiscales = DatosFiscales::with(['red_social', 'adicional', 'domicilio', 'productos_ventas'])->findOrFail($id);
+        $redesSociales = $datosFiscales->red_social;
+
+        $registrosAdicionales = $datosFiscales->adicional->map(function ($item) {
+            return [$item->str_nombre_registro_adicional, $item->str_clave_registro_adicional];
+        })->toArray();
+        
+        
+
+
+
+        return view('registro.registro', [
+            'datosFiscales' => $datosFiscales,
+            'redesSociales' => $redesSociales,
+            'registrosAdicionales' => $registrosAdicionales,
+        ]);
     }
 
     /**

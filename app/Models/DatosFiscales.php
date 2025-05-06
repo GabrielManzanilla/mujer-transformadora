@@ -44,7 +44,7 @@ class DatosFiscales extends Model
     }
 
     public function adicional(){
-        return $this->hasOne(RegistrosAdicionales::class, 'fk_inscripcion_id', 'pk_inscripcion_id');
+        return $this->hasMany(RegistrosAdicionales::class, 'fk_inscripcion_id', 'pk_inscripcion_id');
     }
 
     public function domicilio()
