@@ -243,7 +243,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="domicilios_json" id="domicilios_json">
+							<input type="hidden" name="domicilios_json" id="domicilios_json" value="{{ old('domicilios', json_encode($domicilios ?? '')) }}">
 						</div>
 					</fieldset>
 
@@ -304,7 +304,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="productos_json" id="productos_json">
+							<input type="hidden" name="productos_json" id="productos_json" value="{{ old('productos', json_encode($productos ?? '')) }}">
 						</div>
 
 					</fieldset>
@@ -407,7 +407,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="medios_digitales_json" id="medios_digitales_json">
+							<input type="hidden" name="medios_digitales_json" id="medios_digitales_json" value="{{ old('mediosDigitales', json_encode($mediosDigitales ?? '')) }}">
 						</div>
 					</fieldset>
 

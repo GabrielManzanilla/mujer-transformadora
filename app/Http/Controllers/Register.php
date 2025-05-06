@@ -119,49 +119,49 @@ class Register extends Controller
 
 
                 // Añador informacion de domicilio
-                // $domicilios = json_decode($validate['domicilios_json'], true);
-                // foreach ($domicilios as $domicilio) {
-                //     $domicilio_unitario = $dato_fiscal->domicilio()->create([
-                //         'str_direccion' => $domicilio[0],
-                //         'str_estado' => $domicilio[1],
-                //         'str_municipio' => $domicilio[2],
-                //         'str_localidad' => $domicilio[3]
-                //     ]);
-                // }
+                $domicilios = json_decode($validate['domicilios_json'], true);
+                foreach ($domicilios as $domicilio) {
+                    $domicilio_unitario = $dato_fiscal->domicilio()->create([
+                        'str_direccion' => $domicilio[0],
+                        'str_estado' => $domicilio[1],
+                        'str_municipio' => $domicilio[2],
+                        'str_localidad' => $domicilio[3]
+                    ]);
+                }
 
 
-                // // Añacion de productos y ventas
-                // $productos_ventas = json_decode($validate['productos_json'], true);
-                // foreach ($productos_ventas as $producto) {
-                //     $producto_ventas = $dato_fiscal->productos_ventas()->create([
-                //         'str_nombre_producto' => $producto[0],
-                //         'str_descripcion_producto' => $producto[1],
-                //         'int_produccion_mensual' => $producto[2],
-                //         'int_venta_mensual' => $producto[3],
-                //         'int_venta_anual' => $producto[4]
-                //     ]);
-                // }
+                // Añacion de productos y ventas
+                $productos_ventas = json_decode($validate['productos_json'], true);
+                foreach ($productos_ventas as $producto) {
+                    $producto_ventas = $dato_fiscal->productos_ventas()->create([
+                        'str_nombre_producto' => $producto[0],
+                        'str_descripcion_producto' => $producto[1],
+                        'int_produccion_mensual' => $producto[2],
+                        'int_venta_mensual' => $producto[3],
+                        'int_venta_anual' => $producto[4]
+                    ]);
+                }
 
-                // //Creacion de tabla redes sociales
-                // $red_social = $dato_fiscal->red_social()->create([
-                //     'str_facebook' => $validate['facebook_usuario'],
-                //     'str_facebook_empresarial' => $validate['facebook_empresarial'],
-                //     'str_facebook_marketplace' => $validate['facebook_marketplace'],
-                //     'str_pagina_web' => $validate['pagina_web'],
-                //     'str_whatsapp_bussines' => $validate['whatsapp_empresarial'],
-                //     'str_mercado_libre' => $validate['mercado_libre'],
-                //     'str_mercado_pago' => $validate['mercado_pago'],
-                // ]);
+                //Creacion de tabla redes sociales
+                $red_social = $dato_fiscal->red_social()->create([
+                    'str_facebook' => $validate['facebook_usuario'],
+                    'str_facebook_empresarial' => $validate['facebook_empresarial'],
+                    'str_facebook_marketplace' => $validate['facebook_marketplace'],
+                    'str_pagina_web' => $validate['pagina_web'],
+                    'str_whatsapp_bussines' => $validate['whatsapp_empresarial'],
+                    'str_mercado_libre' => $validate['mercado_libre'],
+                    'str_mercado_pago' => $validate['mercado_pago'],
+                ]);
 
-                // if ($validate['medios_digitales_json'] != null) {
-                //     $red_adicional = json_decode($validate['medios_digitales_json'], true);
-                //     foreach ($red_adicional as $red_social_adicional) {
-                //         $red_social_adicional = $red_social->redes_adicionales()->create([
-                //             'str_nombre_red_social' => $red_social_adicional[0],
-                //             'str_nombre_perfil' => $red_social_adicional[1]
-                //         ]);
-                //     }
-                // }
+                if ($validate['medios_digitales_json'] != null) {
+                    $red_adicional = json_decode($validate['medios_digitales_json'], true);
+                    foreach ($red_adicional as $red_social_adicional) {
+                        $red_social_adicional = $red_social->redes_adicionales()->create([
+                            'str_nombre_red_social' => $red_social_adicional[0],
+                            'str_nombre_perfil' => $red_social_adicional[1]
+                        ]);
+                    }
+                }
             });
             return redirect()->route('list.registers');
         }
@@ -176,11 +176,8 @@ class Register extends Controller
         //
 
         $datosFiscales = DatosFiscales::with(['red_social', 'domicilio', 'productos_ventas'])->findOrFail($id);
-        $redesSociales = $datosFiscales->red_social;
-        $domicilios = $datosFiscales->domicilio;
-        $productos = $datosFiscales->productos_ventas;
-        $registrosAdicionales = $datosFiscales->adicional;
-        $mediosDigitalesAdicionales = $redesSociales->redes_adicionales;
+        
+        
 
         return view('registro.show', [
             'datosFiscales' => $datosFiscales,
@@ -200,7 +197,18 @@ class Register extends Controller
         $registrosAdicionales = $datosFiscales->adicional->map(function ($item) {
             return [$item->str_nombre_registro_adicional, $item->str_clave_registro_adicional];
         })->toArray();
+
+        $domicilios = $datosFiscales->domicilio->map(function ($item) {
+            return [$item->str_direccion, $item->str_estado, $item->str_municipio, $item->str_localidad];
+        })->toArray();
         
+        $productos = $datosFiscales->productos_ventas->map(function ($item) {
+            return [$item->str_nombre_producto, $item->str_descripcion_producto, $item->int_produccion_mensual, $item->int_venta_mensual, $item->int_venta_anual];
+        })->toArray();
+
+        $mediosDigitales = $datosFiscales->red_social->redes_adicionales->map(function ($item) {
+            return [$item->str_nombre_red_social, $item->str_nombre_perfil];
+        })->toArray();
         
 
 
@@ -209,6 +217,9 @@ class Register extends Controller
             'datosFiscales' => $datosFiscales,
             'redesSociales' => $redesSociales,
             'registrosAdicionales' => $registrosAdicionales,
+            'domicilios' => $domicilios,
+            'productos' => $productos,
+            'mediosDigitales' => $mediosDigitales,
         ]);
     }
 
