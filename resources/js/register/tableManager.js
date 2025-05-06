@@ -8,6 +8,16 @@ export class TableManager{
 		this.json = table_data.json;
 		this.tableBody = this.tableElement.getElementsByTagName('tbody')[0];
 		this.array_data = []; // conjunto de datos
+
+		this.comprobation_empty_json(); //verificamos si el json tiene datos para llenar la tabla
+	}
+	comprobation_empty_json(){
+		if(this.json.value != ''){
+			this.array_data = JSON.parse(this.json.value);
+			this.array_data.forEach((data)=>{
+				this.addRow(data);
+			});
+		}
 	}
 
 	fillTable(){
@@ -17,8 +27,10 @@ export class TableManager{
 			input.value = ''
 		});
 		this.array_data.push((data))
-		console.log(JSON.stringify(this.array_data))
+
+		
 		this.addRow(data);
+		console.log(JSON.stringify(this.array_data))
 		this.json.value = JSON.stringify(this.array_data)
 	}
 
@@ -44,8 +56,9 @@ export class TableManager{
 
 		//añadir funcionalidad para eliminar la fila del boton
 		deleteButton.addEventListener('click', (i) => {
+			this.array_data.splice(newRow.rowIndex - 1, 1); 
+			this.json.value = JSON.stringify(this.array_data)
 			newRow.remove();
-			this.array_data.splice(i);
 			this.checkEmptyTable();
 		}); 
 		optionsCell.appendChild(deleteButton);

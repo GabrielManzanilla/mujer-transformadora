@@ -170,7 +170,7 @@
 										<td colspan="3" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
 											datos disponibles</td>
 									</tr>
-									<input type="text" name="registros_adicionales" id="registros_json" value="{{ old('registrosAdicionales', json_encode($registrosAdicionales ?? json_encode([]))) }}" class="">
+									<input type="text" name="registros_adicionales" id="registros_json" value="{{ old('registrosAdicionales', json_encode($registrosAdicionales ?? '')) }}" class="">
 
 								</table>
 						</div>
