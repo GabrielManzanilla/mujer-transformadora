@@ -96,8 +96,9 @@ class Register extends Controller
         ]);
 
         if ($validate->fails()) {
-            dd($validate->errors());
-            //return redirect()->back()->with('message', 'Debes completar todos los campos');
+            return redirect()->back()
+                ->withErrors($validate)
+                ->withInput();
         } else {
             $validate = $validate->validated();
             DB::transaction(function () use ($validate) {

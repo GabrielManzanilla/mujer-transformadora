@@ -40,7 +40,7 @@ class AuthController
     {
         $request->validate([
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:6', 'confirmed'], 
+            'password' => ['required', 'min:6', 'confirmed'],
 
             //datos personales
             'nombres' => 'nullable | string|max:50',
@@ -53,13 +53,32 @@ class AuthController
             'sexo' => 'nullable | string',
             'mayahablante' => 'nullable | boolean',
             'telefono' => 'nullable | string|max:10',
-        ]);
 
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
         ]);
-        $perfil=$user->perfil()->create([
+        try {
+            $user = User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+        } catch (\Exception $e) {
+            dd($e);
+        }
+
+
+        if ($request->hasFile('acta_nacimiento')) {
+            $actaNacimiento = $request->file('acta_nacimiento');
+
+            // Crear la carpeta personalizada para el usuario
+            $userFolder = 'usuarios/' . $user->id;
+
+            // Guardar el archivo en el disco 'local' (storage/app)
+            $actaNacimientoPath = $actaNacimiento->store($userFolder, 'local');
+
+            // Guardar la ruta del archivo en la base de datos
+
+        }
+
+        $perfil = $user->perfil()->create([
             'str_nombre' => $request->nombres,
             'str_apellido_paterno' => $request->apellido_paterno,
             'str_apellido_materno' => $request->apellido_materno,
@@ -70,9 +89,10 @@ class AuthController
             'str_sexo' => $request->sexo,
             'bl_mayahablante' => $request->mayahablante,
             'str_tel_celular' => $request->telefono,
+            'path_acta_nacimiento' => $actaNacimientoPath
         ]);
 
-        Auth::loginUsingId($user->id); // lo loguea automáticamente
+
 
         return redirect('/'); //RUTA POR CAMBIAR PARA USAURIO
     }

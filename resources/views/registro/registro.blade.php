@@ -26,7 +26,7 @@
 			<div id="progress_bar" class="bg-[#6D1528] h-5 rounded-full text-center text-[#c2995c] font-bold pb-5"
 				style="width: 0%">0%</div>
 		</div>
-		<form
+		<form enctype="multipart/form-data"
 			action="{{ isset($datosFiscales) ? route('update.register', $datosFiscales->pk_inscripcion_id) : route('make.register') }}"
 			method="post" id="registerForm" class="flex flex-row w-full h-full gap-2 md:px-5 max-w-screen">
 			@csrf
@@ -170,9 +170,10 @@
 										<td colspan="3" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">No hay
 											datos disponibles</td>
 									</tr>
-									<input type="text" name="registros_adicionales" id="registros_json" value="{{ old('registrosAdicionales', json_encode($registrosAdicionales ?? '')) }}" class="">
+									<input type="text" name="registros_adicionales" id="registros_json"
+										value="{{ old('registrosAdicionales', json_encode($registrosAdicionales ?? '')) }}" class="">
 
-								</table>
+							</table>
 						</div>
 
 					</fieldset>
@@ -243,7 +244,8 @@
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="domicilios_json" id="domicilios_json" value="{{ old('domicilios', json_encode($domicilios ?? '')) }}">
+							<input type="hidden" name="domicilios_json" id="domicilios_json"
+								value="{{ old('domicilios', json_encode($domicilios ?? '')) }}">
 						</div>
 					</fieldset>
 
@@ -304,7 +306,8 @@
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="productos_json" id="productos_json" value="{{ old('productos', json_encode($productos ?? '')) }}">
+							<input type="hidden" name="productos_json" id="productos_json"
+								value="{{ old('productos', json_encode($productos ?? '')) }}">
 						</div>
 
 					</fieldset>
@@ -316,8 +319,7 @@
 								<label for="facebook_usuario" class="block text-sm font-medium text-gray-700 mb-1">Facebook</label>
 								<input type="text" id="facebook_usuario" name="facebook_usuario"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Facebook"
-									value="{{ old('str_facebook', $redesSociales->str_facebook ?? '') }}">
+									placeholder="Facebook" value="{{ old('str_facebook', $redesSociales->str_facebook ?? '') }}">
 							</div>
 							<div class="mb-4 md:flex-1">
 								<label for="facebook_empresarial" class="block text-sm font-medium text-gray-700 mb-1">Facebook
@@ -340,8 +342,7 @@
 								<label for="pagina_web" class="block text-sm font-medium text-gray-700 mb-1">Pagina WEB</label>
 								<input type="text" id="pagina_web" name="pagina_web"
 									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]"
-									placeholder="Pagina WEB"
-									value="{{ old('str_pagina_web', $redesSociales->str_pagina_web ?? '') }}">
+									placeholder="Pagina WEB" value="{{ old('str_pagina_web', $redesSociales->str_pagina_web ?? '') }}">
 							</div>
 							<div class="mb-4">
 								<label for="whatsapp_empresarial" class="block text-sm font-medium text-gray-700 mb-1">Whatsapp
@@ -407,7 +408,8 @@
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="medios_digitales_json" id="medios_digitales_json" value="{{ old('mediosDigitales', json_encode($mediosDigitales ?? '')) }}">
+							<input type="hidden" name="medios_digitales_json" id="medios_digitales_json"
+								value="{{ old('mediosDigitales', json_encode($mediosDigitales ?? '')) }}">
 						</div>
 					</fieldset>
 

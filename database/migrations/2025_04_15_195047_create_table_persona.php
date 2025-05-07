@@ -25,6 +25,11 @@ return new class extends Migration
             $table->string("str_tel_celular");
             $table ->enum("estado_perfil", ["Activo","En espera","Datos Incompletos", "Desactivado"]) ->default("En espera");
 
+            $table->string("path_acta_nacimiento")->nullable();
+            $table->string("path_identificacion")->nullable();
+            $table->string("path_comprobante_domicilio")->nullable();
+            $table->string("path_curp")->nullable();
+
             //falta añadir los documentos del usuario
 
             //conexion con la tabla de usuers

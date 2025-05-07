@@ -1,7 +1,7 @@
 @extends ('layouts.base')
 @section ('content')
 	<h2>Registro</h2>
-	<form method="POST" action="{{ route('make.register') }}">
+	<form method="POST" action="{{ route('make.registro') }}" enctype="multipart/form-data">
 			@csrf
 			<fieldset>
 				<input type="email" name="email" placeholder="Email" required><br>
@@ -13,7 +13,7 @@
 				<input type="text" name="nombres" id="nombres" placeholder="Nombres" required><br>
 				<input type="text" name="apellido_paterno" id="apellido_paterno" placeholder="Apellido Paterno" required><br>
 				<input type="text" name="apellido_materno" id="apellido_materno" placeholder="Apellido Materno" required><br>
-				<label for="fecha_nacimiento">Fecha Nacimiento
+				<label for="fecha_nacimiento">Ubicacion
 					<input type="text" name="estado_nacimiento" id="estado_nacimiento" placeholder="Estado de Nacimiento" required><br>
 					<input type="text" name="municipio_nacimiento" id="municipio_nacimiento" placeholder="Municipio de Nacimiento" required><br>
 				</label>
@@ -27,6 +27,12 @@
 					<input type="checkbox" name="mayahablante" id="mayahablante" value="1">
 				¿Habla Maya?</label>
 				<input type="tel" name="telefono" id="telefono" placeholder="Teléfono" required><br>
+
+				Acta Nacimiento <input type="file" name="acta_nacimiento" id="acta_nacimiento" accept="application/pdf,image/*" required><br>
+				<!-- CURP <input type="file" name="curp_file" id="curp_file" accept="application/pdf,image/*" required><br>
+				Comprobante Domicilio <input type="file" name="comprobante_domicilio" id="comprobante_domicilio" accept="application/pdf,image/*" required><br>
+				Foto <input type="file" name="foto" id="foto" accept="application/pdf,image/*" required><br>
+				INE <input type="file" name="ine" id="ine" accept="application/pdf,image/*" required><br> -->
 			</fieldset>
 			<button type="submit">Registrarse</button>
 

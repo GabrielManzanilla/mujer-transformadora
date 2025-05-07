@@ -24,6 +24,8 @@ class Persona extends Model
         'str_correo_electronico',
         'str_tel_celular',
         'estado_perfil',
+        'path_acta_nacimiento',
+        'fk_user_id',
     ];
     public function user(){
         return $this->belongsTo(User::class, 'fk_user_id', 'id');
