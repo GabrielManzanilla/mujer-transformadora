@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\datos_personales;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\PersonaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Register;
@@ -38,5 +39,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('perfil', [datos_personales::class, 'index'])->name('perfil');
     Route::get('perfil/editar', [datos_personales::class, 'edit'])->name('actualizar.perfil');
     Route::put('perfil/editar', [datos_personales::class, 'update'])->name('make.update');
+
+    Route::get('/archivo/{personaId}/{typefile}', [FileController::class, 'showFile'])
+    ->name('archivo.ver');
+
 
 });
