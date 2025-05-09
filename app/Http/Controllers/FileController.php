@@ -8,6 +8,27 @@ use App\Models\Persona;
 class FileController extends Controller
 {
     //
+
+
+    public function storeFile(Request $request, $key, $table, $user_id, $inscripcion_id = null){
+        if($request->hasFile($key)){
+            $file = $request->file($key);
+            
+            $folder = match($table){
+                'usuarios' => 'usuarios/'.$user_id,
+                'inscripciones' => 'usuarios/'.$user_id.'/inscripciones/'.$inscripcion_id,
+            };
+
+            if (is_array($file)) { // Confirmacion de si el archivo es un array y si es asi extrae el primero 
+                $file = $file[0]; 
+            }
+            $path = $file->store($folder, 'local');
+            return $path;
+        }
+        return null;
+    }
+
+
     public function showFile($personaId, $typefile)
     {
         $usuarioId = auth()->id();
@@ -29,5 +50,9 @@ class FileController extends Controller
 
         $pathCompleto = Storage::disk('local')->path($campoArchivo);
         return response()->file($pathCompleto);
+    }
+
+    public function editFile($personaId, $typefile, Request $request){
+        
     }
 }

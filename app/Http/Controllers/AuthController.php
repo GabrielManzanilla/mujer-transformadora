@@ -65,18 +65,9 @@ class AuthController
         }
 
 
-        if ($request->hasFile('acta_nacimiento')) {
-            $actaNacimiento = $request->file('acta_nacimiento');
+        $actaNacimientoPath = app(FileController::class)->storeFile($request, 'acta_nacimiento', 'usuarios', $user->id);
 
-            // Crear la carpeta personalizada para el usuario
-            $userFolder = 'usuarios/' . $user->id;
-
-            // Guardar el archivo en el disco 'local' (storage/app)
-            $actaNacimientoPath = $actaNacimiento->store($userFolder, 'local');
-
-            // Guardar la ruta del archivo en la base de datos
-
-        }
+        
 
         $perfil = $user->perfil()->create([
             'str_nombre' => $request->nombres,
@@ -91,9 +82,10 @@ class AuthController
             'str_tel_celular' => $request->telefono,
             'path_acta_nacimiento' => $actaNacimientoPath
         ]);
+        //($request, key, $perfil, column_db , )
 
 
-
+        Auth::loginUsingId($user->id);
         return redirect('/'); //RUTA POR CAMBIAR PARA USAURIO
     }
 

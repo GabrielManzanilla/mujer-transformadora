@@ -14,7 +14,7 @@
 <a href="{{ route('actualizar.perfil') }}">Modificar</a>
 
 <a href="{{ route('archivo.ver', ['personaId' => $datosPersonales->pk_persona_id, 'typefile' => 'acta']) }}" target="_blank">
-    [{{ $datosPersonales->path_acta_nacimiento }}]]
+    Ver Acta de Nacimiento
 </a>
 </main>
 

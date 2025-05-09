@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer("int_venta_anual");
 
             $table -> uuid("fk_dato_fiscal_id");
-            $table ->foreign("fk_dato_fiscal_id")->references("pk_dato_fiscal_id")->on("tb_datos_fiscales")->onDelete("cascade");
+            $table ->foreign("fk_dato_fiscal_id")->references("pk_inscripcion_id")->on("tb_inscripciones")->onDelete("cascade");
 
             $table->timestamps();
         });
