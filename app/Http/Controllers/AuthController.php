@@ -61,13 +61,21 @@ class AuthController
                 'password' => Hash::make($request->password),
             ]);
         } catch (\Exception $e) {
+
+        }
+
+        try {
+            $fileController = app(FileController::class);
+
+            $actaNacimientoPath = $fileController->storeFile($request, 'acta_nacimiento', 'usuarios', $user->id);
+            $curpPath = $fileController->storeFile($request, 'curp_file', 'usuarios', $user->id);
+            $comprobanteDomicilioPath = $fileController->storeFile($request, 'comprobante_domicilio', 'usuarios', $user->id);
+            $inePath = $fileController->storeFile($request, 'ine', 'usuarios', $user->id);
+        } catch (\Exception $e) {
             dd($e);
         }
 
 
-        $actaNacimientoPath = app(FileController::class)->storeFile($request, 'acta_nacimiento', 'usuarios', $user->id);
-
-        
 
         $perfil = $user->perfil()->create([
             'str_nombre' => $request->nombres,
@@ -80,9 +88,12 @@ class AuthController
             'str_sexo' => $request->sexo,
             'bl_mayahablante' => $request->mayahablante,
             'str_tel_celular' => $request->telefono,
-            'path_acta_nacimiento' => $actaNacimientoPath
+            'path_acta_nacimiento' => $actaNacimientoPath,
+            'str_path_curp' => $curpPath,
+            'str_path_comprobante_domicilio' => $comprobanteDomicilioPath,
+            'str_path_ine' => $inePath,
+
         ]);
-        //($request, key, $perfil, column_db , )
 
 
         Auth::loginUsingId($user->id);

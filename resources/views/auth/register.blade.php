@@ -29,10 +29,10 @@
 				<input type="tel" name="telefono" id="telefono" placeholder="Teléfono" required><br>
 
 				Acta Nacimiento <input type="file" name="acta_nacimiento" id="acta_nacimiento" accept="application/pdf,image/*" required><br>
-				<!-- CURP <input type="file" name="curp_file" id="curp_file" accept="application/pdf,image/*" required><br>
-				Comprobante Domicilio <input type="file" name="comprobante_domicilio" id="comprobante_domicilio" accept="application/pdf,image/*" required><br>
-				Foto <input type="file" name="foto" id="foto" accept="application/pdf,image/*" required><br>
-				INE <input type="file" name="ine" id="ine" accept="application/pdf,image/*" required><br> -->
+				CURP <input type="file" name="curp_file" id="curp_file" accept="application/pdf,image/*" ><br>
+				Comprobante Domicilio <input type="file" name="comprobante_domicilio" id="comprobante_domicilio" accept="application/pdf,image/*" ><br>
+				<!-- Foto <input type="file" name="foto" id="foto" accept="application/pdf,image/*" required><br> -->
+				INE <input type="file" name="ine" id="ine" accept="application/pdf,image/*" ><br>
 			</fieldset>
 			<button type="submit">Registrarse</button>
 
