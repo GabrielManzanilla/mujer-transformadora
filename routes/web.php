@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('perfil/editar', [datos_personales::class, 'edit'])->name('actualizar.perfil');
     Route::put('perfil/editar', [datos_personales::class, 'update'])->name('make.update');
 
-    Route::get('/archivo/{personaId}/{typefile}', [FileController::class, 'showFile'])
+    Route::get('/archivo/{typefile}/{personaId}', [FileController::class, 'showFile'])
     ->name('archivo.ver');
 
 

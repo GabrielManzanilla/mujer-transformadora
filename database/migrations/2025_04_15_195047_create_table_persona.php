@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string("path_identificacion")->nullable();
             $table->string("path_comprobante_domicilio")->nullable();
             $table->string("path_curp")->nullable();
+            $table->string("path_foto_perfil")->nullable();
 
             //falta añadir los documentos del usuario
 

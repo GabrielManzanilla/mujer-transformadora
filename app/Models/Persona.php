@@ -25,6 +25,10 @@ class Persona extends Model
         'str_tel_celular',
         'estado_perfil',
         'path_acta_nacimiento',
+        'path_identificacion',
+        'path_comprobante_domicilio',
+        'path_curp',
+        'path_foto_perfil',
         'fk_user_id',
     ];
     public function user(){

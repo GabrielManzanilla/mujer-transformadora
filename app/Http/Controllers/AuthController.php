@@ -71,6 +71,7 @@ class AuthController
             $curpPath = $fileController->storeFile($request, 'curp_file', 'usuarios', $user->id);
             $comprobanteDomicilioPath = $fileController->storeFile($request, 'comprobante_domicilio', 'usuarios', $user->id);
             $inePath = $fileController->storeFile($request, 'ine', 'usuarios', $user->id);
+            $fotoPerfilPath = $fileController->storeFile($request, 'foto_perfil', 'usuarios', $user->id);
         } catch (\Exception $e) {
             dd($e);
         }
@@ -91,7 +92,8 @@ class AuthController
             'path_acta_nacimiento' => $actaNacimientoPath,
             'path_curp' => $curpPath,
             'path_comprobante_domicilio' => $comprobanteDomicilioPath,
-            'path_ine' => $inePath,
+            'path_identificacion' => $inePath,
+            'path_foto_perfil' => $fotoPerfilPath,
 
         ]);
 
