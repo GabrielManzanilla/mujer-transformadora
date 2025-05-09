@@ -89,9 +89,9 @@ class AuthController
             'bl_mayahablante' => $request->mayahablante,
             'str_tel_celular' => $request->telefono,
             'path_acta_nacimiento' => $actaNacimientoPath,
-            'str_path_curp' => $curpPath,
-            'str_path_comprobante_domicilio' => $comprobanteDomicilioPath,
-            'str_path_ine' => $inePath,
+            'path_curp' => $curpPath,
+            'path_comprobante_domicilio' => $comprobanteDomicilioPath,
+            'path_ine' => $inePath,
 
         ]);
 

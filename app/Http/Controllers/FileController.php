@@ -38,9 +38,10 @@ class FileController extends Controller
             ->firstOrFail();
 
         $campoArchivo = match ($typefile) {
-            'acta' => $persona->path_acta_nacimiento,
-            // 'curp' => $persona->path_curp,
-            // 'comprobante' => $persona->path_comprobante_domicilio,
+            'acta_nacimiento' => $persona->path_acta_nacimiento,
+            'curp_file' => $persona->path_curp,
+            'comprobante_domicilio' => $persona->path_comprobante_domicilio,
+            'ine' => $persona->path_comprobante_domicilio,
             default => abort(404, 'Tipo de archivo no válido'),
         };
 
