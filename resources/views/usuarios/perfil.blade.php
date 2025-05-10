@@ -8,8 +8,9 @@
         <a href="{{ route('archivo.ver', ['typefile' => 'foto_perfil', 'personaId' => $datosPersonales->pk_persona_id]) }}"
             target="_blank">
             <img src="{{ route('archivo.ver', ['typefile' => 'foto_perfil', 'personaId' => $datosPersonales->pk_persona_id]) }}"
+            alt="foto perfil" 
             class="rounded-full w-32 h-32 object-cover mb-4">
-                alt="foto perfil" </a>
+        </a>
 
             <h1>Estado Perfil: {{ $datosPersonales->estado_perfil }}</h1>
             <div>

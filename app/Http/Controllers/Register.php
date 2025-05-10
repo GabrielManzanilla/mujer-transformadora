@@ -12,6 +12,20 @@ use App\Models\Persona;
 
 class Register extends Controller
 {
+    protected function decodeJson($json, $relation, $structure, $update=false){
+        $items = json_decode($json, true);
+        if ($update == true){
+            $relation->delete();
+        }
+        $size = count($structure);
+        foreach ($items as $item) {
+            $data = [];
+            for ($i = 0; $i < $size; $i++) {
+                $data[$structure[$i]] = $item[$i];
+            }
+            $tabla = $relation->create($data);
+        }
+    }
     /**
      * Display a listing of the resource.
      */
