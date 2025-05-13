@@ -1,6 +1,6 @@
 @extends ('layouts.base')
 @section ('content')
-	<h2 class="text-2xl font-bold text-center mb-4">Registro</h2>
+	<h2 class="text-2xl font-bold text-center text-bold text-[#6D1528] uppercase my-4">Registrarse</h2>
 	
 	<div class="w-full h-full px-1 md:px-4 pt-4">
 		<div class="w-full bg-gray-200 rounded-full h-5 dark:bg-gray-400">
@@ -19,7 +19,7 @@
 			</div>
 			
 			<div class="flex-col flex-1 md:flex-4 h-full w-full relative py-2">
-				<div class="block h-full w-full overflow-auto pb-26 ocultar-scroll" id="stepsForm">
+				<div class="block h-full w-full overflow-y-auto auto pb-40 ocultar-scroll" id="stepsForm">
 					<fieldset class="step hidden border border-gray-300 p-4 rounded-lg mb-4" data-step="1">
 						<legend class="text-lg font-medium px-2">Datos de Acceso</legend>
 						<div class="mb-4">
