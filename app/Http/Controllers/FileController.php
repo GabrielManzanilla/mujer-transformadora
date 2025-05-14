@@ -65,7 +65,7 @@ class FileController extends Controller
         $campoArchivo = $this->getPath($usuarioId, $typefile, $personaId, $inscripcion_id);
 
 
-        if (!$campoArchivo || !\Storage::disk('local')->exists($campoArchivo)) {
+        if (!$campoArchivo || !Storage::disk('local')->exists($campoArchivo)) {
             abort(404, 'Archivo no encontrado.');
         }
 

@@ -417,36 +417,14 @@
 						<legend class="text-lg font-medium px-2">Carga de Archivos</legend>
 						<div class="flex flex-col w-full md:flex-row gap-2">
 							<div class="mb-4 flex-1">
-								<label for="ine_file" class="block text-sm font-medium text-gray-700 mb-1">INE</label>
+								<label for="imms_file" class="block text-sm font-medium text-gray-700 mb-1">Registro IMSS</label>
 								<div class="flex">
-									<input type="file" id="ine_file" name="ine_file"
-										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-
-								</div>
-							</div>
-							<div class="mb-4 flex-1">
-								<label for="acta_nacimiento_file" class="block text-sm font-medium text-gray-700 mb-1">Acta de
-									Nacimiento</label>
-								<div class="flex">
-									<input type="file" id="acta_nacimiento_file" name="acta_nacimiento_file"
-										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-								</div>
-							</div>
-						</div>
-						<div class="flex flex-col w-full md:flex-row gap-2">
-							<div class="mb-4 flex-1">
-								<label for="comprobante_domicilio_file" class="block text-sm font-medium text-gray-700 mb-1">Comprobante
-									de
-									Domicilio</label>
-								<div class="flex">
-									<input type="file" id="comprobante_domicilio_file" name="comprobante_domicilio_file"
+									<input type="file" id="imms_file" name="imms_file"
 										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
 								</div>
 							</div>
 							<div class="mb-4 flex-1">
-								<label for="cif_file" class="block text-sm font-medium text-gray-700 mb-1">Constancia de Situacion
-									Fiscal
-									(CIF)</label>
+								<label for="cif_file" class="block text-sm font-medium text-gray-700 mb-1">Registro CIF</label>
 								<div class="flex">
 									<input type="file" id="cif_file" name="cif_file"
 										class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
@@ -469,13 +447,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="mb-4">
-							<label for="imss_file" class="block text-sm font-medium text-gray-700 mb-1">Registro IMSS</label>
-							<div class="flex">
-								<input type="file" id="imss_file" name="imss_file"
-									class="w-full px-3 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6D1528]">
-							</div>
-						</div>
+					
 						<div class="mb-4">
 							<label for="denominacion_documento_adicional" class="block text-sm font-medium text-gray-700 mb-1">Registros
 								Adicionales</label>

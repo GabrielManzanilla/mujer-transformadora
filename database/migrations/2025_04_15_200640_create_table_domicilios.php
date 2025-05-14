@@ -22,8 +22,8 @@ return new class extends Migration
             $table -> foreign("fk_localidad_id")->references("pk_id_localidad")->on("cat_localidades")->onDelete("cascade");
             
             //union con la tabla de datos fiscales
-            $table ->uuid("fk_dato_fiscal_id");
-            $table -> foreign("fk_dato_fiscal_id")->references("pk_inscripcion_id")->on("tb_inscripciones")->onDelete("cascade");
+            $table ->uuid("fk_inscripcion_id");
+            $table -> foreign("fk_inscripcion_id")->references("pk_inscripcion_id")->on("tb_inscripciones")->onDelete("cascade");
             $table->timestamps();
         });
     }

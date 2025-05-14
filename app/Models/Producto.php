@@ -32,6 +32,6 @@ class Producto extends Model
     }
     public function products()
     {
-        return $this->belongsTo(DatosFiscales::class, 'fk_dato_fiscal_id', 'pk_dato_fiscal_id');
+        return $this->belongsTo(DatosFiscales::class, 'fk_inscripcion_id', 'pk_inscripcion_id');
     }
 }

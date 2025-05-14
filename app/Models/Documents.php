@@ -4,22 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Domicilio extends Model
+class Documents extends Model
 {
     //
-    protected $table = "tb_domicilios";
-    protected $primaryKey = "pk_domicilio_id";
-    public $incrementing = false; 
+    protected $table = "tb_documentos";
+    protected $primaryKey ="pk_documento_id";
+
+    public $incrementing = false;
+
     protected $keyType = "string";
 
     protected $fillable = [
-        "str_direccion",
-        // "fk_estado_id",
-        // "fk_municipio_id",
-        // "fk_localidad_id",
-        "fk_dato_fiscal_id",
+        "path_impi",
+        "path_imss",
+        "path_affy",
+        "path_cif",
+        "fk_dato_fiscal_id"
     ];
-
     protected static function boot(){
         parent::boot();
         static::creating(function($model){
@@ -32,6 +33,4 @@ class Domicilio extends Model
     public function pertenece_dato_fiscal(){
         return $this->belongsTo(DatosFiscales::class,'fk_inscripcion_id','pk_inscripcion_id');
     }
-
-    
 }

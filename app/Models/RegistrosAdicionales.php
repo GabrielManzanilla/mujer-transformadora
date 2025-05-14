@@ -19,7 +19,7 @@ class RegistrosAdicionales extends Model
 
     public function pertenece_dato_fiscal()
     {
-        return $this->belongsTo(DatosFiscales::class,'fk_fiscal_data_id','pk_dato_fiscal_id');
+        return $this->belongsTo(DatosFiscales::class,'fk_inscripcion_id','pk_inscripcion_id');
     }
 }
 

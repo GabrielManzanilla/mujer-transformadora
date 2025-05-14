@@ -39,8 +39,8 @@ return new class extends Migration {
         });
 
         Schema::create("tb_registros_adicionales", function (Blueprint $table) {
-            $table->uuid("fk_fiscal_data_id");
-            $table->foreign("fk_fiscal_data_id")->references("pk_inscripcion_id")->on("tb_inscripciones")->onDelete("cascade");
+            $table->uuid("fk_inscripcion_id");
+            $table->foreign("fk_inscripcion_id")->references("pk_inscripcion_id")->on("tb_inscripciones")->onDelete("cascade");
             $table->string("str_nombre_registro_adicional");
             $table->string("str_clave_registro_adicional");
         });

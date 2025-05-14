@@ -22,8 +22,8 @@ return new class extends Migration
             $table ->string("str_mercado_pago")->nullable();
 
             //union con la tabla tb_datos_fiscales
-            $table ->uuid("fk_dato_fiscal_id");
-            $table->foreign("fk_dato_fiscal_id")->references("pk_inscripcion_id")->on("tb_inscripciones")->onDelete("cascade");
+            $table ->uuid("fk_inscripcion_id");
+            $table->foreign("fk_inscripcion_id")->references("pk_inscripcion_id")->on("tb_inscripciones")->onDelete("cascade");
 
             $table->timestamps();
         });

@@ -98,13 +98,10 @@ class Register extends Controller
             'medios_digitales_json' => 'nullable | json',
 
             // //DOCUMENTOS
-            // 'ine_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
-            // 'acta_nacimiento_file'=> 'nullable | file | mimes:pdf,jpg,jpeg,png',
-            // 'comprobante_domicilio_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
-            // 'cif_file'=> 'nullable | file | mimes:pdf,jpg,jpeg,png',
-            // 'affy_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
-            // 'impi_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
-            // 'imss_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
+            'cif_file'=> 'nullable | file | mimes:pdf,jpg,jpeg,png',
+            'affy_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
+            'impi_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
+            'imss_file' => 'nullable | file | mimes:pdf,jpg,jpeg,png',
             // // -- tabla de documentos adicionales --
             // 'documentos_adicionales_json' => 'nullable | json'
         ]);
@@ -133,14 +130,18 @@ class Register extends Controller
                     'int_num_empleados' => $validate['numero_empleados'],
                 ]);
 
-                if ($validate['registros_adicionales'] != null) {
+                if (!empty($validate['registros_adicionales'])) {
                     //Añadir registros adiconales
                     $registros_adicionales = json_decode($validate['registros_adicionales'], true);
-                    foreach ($registros_adicionales as $registro) {
-                        $dato_fiscal->adicional()->create([
-                            'str_nombre_registro_adicional' => $registro[0],
-                            'str_clave_registro_adicional' => $registro[1],
-                        ]);
+                    
+                    // Verificar que se decodificó correctamente como un array
+                    if (is_array($registros_adicionales) && !empty($registros_adicionales)) {
+                        foreach ($registros_adicionales as $registro) {
+                            $dato_fiscal->adicional()->create([
+                                'str_nombre_registro_adicional' => $registro[0],
+                                'str_clave_registro_adicional' => $registro[1],
+                            ]);
+                        }
                     }
                 }
 
@@ -180,16 +181,38 @@ class Register extends Controller
                     'str_mercado_pago' => $validate['mercado_pago'],
                 ]);
 
-                if ($validate['medios_digitales_json'] != null) {
+                if (!empty($validate['medios_digitales_json'])) {
                     $red_adicional = json_decode($validate['medios_digitales_json'], true);
-                    foreach ($red_adicional as $red_social_adicional) {
-                        $red_social_adicional = $red_social->redes_adicionales()->create([
-                            'str_nombre_red_social' => $red_social_adicional[0],
-                            'str_nombre_perfil' => $red_social_adicional[1]
-                        ]);
+                    if (is_array($red_adicional) && !empty($registros_adicionales)) {
+                        foreach ($red_adicional as $red_social_adicional) {
+                            $red_social_adicional = $red_social->redes_adicionales()->create([
+                                'str_nombre_red_social' => $red_social_adicional[0],
+                                'str_nombre_perfil' => $red_social_adicional[1]
+                            ]);
+                        }
                     }
+                    
                 }
+                // try{
+                //     $fileController = app(FileController::class);
+    
+                //     $cif_filPath= $fileController->storeFile($validate, 'cif_file', 'inscripciones', $user->id);
+                //     $affy_filePath= $fileController->storeFile($validate, 'affy_file', 'inscripciones', $user->id);
+                //     $impi_filePath= $fileController->storeFile($validate, 'impi_file', 'inscripciones', $user->id);
+                //     $imss_filePath= $fileController->storeFile($validate, 'imss_file', 'inscripciones', $user->id);
+                // } catch (\Exception $e) {
+                //     dd($e);
+                // };
+
+                // $documentos= $dato_fiscal->domumentos()->create([
+                //     "path_impi" => $impi_filePath,
+                //     "path_imss"=> $imss_filePath,
+                //     "path_affy" => $affy_filePath,
+                //     "path_cif" => $cif_filPath,
+                // ]);
             });
+
+
             return redirect()->route('list.registers');
         }
 
@@ -203,9 +226,6 @@ class Register extends Controller
         //
 
         $datosFiscales = DatosFiscales::with(['red_social', 'domicilio', 'productos_ventas'])->findOrFail($id);
-
-
-
         return view('registro.show', [
             'datosFiscales' => $datosFiscales,
         ]);
@@ -221,10 +241,10 @@ class Register extends Controller
 
         $redesSociales = $datosFiscales->red_social;
 
-        $registrosAdicionales = $this->transformCollection($datosFiscales->adicional, [
+        $registrosAdicionales = $datosFiscales->adicional ? $this->transformCollection($datosFiscales->adicional, [
             'str_nombre_registro_adicional',
             'str_clave_registro_adicional',
-        ]);
+        ]) : null;
 
         $domicilios = $this->transformCollection($datosFiscales->domicilio, [
             'str_direccion',

@@ -61,5 +61,8 @@ class DatosFiscales extends Model
     {
         return $this->hasOne(RedesSociales::class, 'fk_inscripcion_id', 'pk_inscripcion_id');
     }
-
+    public function domumentos()
+    {
+        return $this->hasMany(Domicilio::class, 'fk_inscripcion_id', 'pk_inscripcion_id');
+    }
 }

@@ -12,11 +12,28 @@ export class TableManager{
 		this.comprobation_empty_json(); //verificamos si el json tiene datos para llenar la tabla
 	}
 	comprobation_empty_json(){
-		if(this.json.value != ''){
-			this.array_data = JSON.parse(this.json.value);
-			this.array_data.forEach((data)=>{
-				this.addRow(data);
-			});
+		console.log(this.json.value)
+		if(this.json.value && this.json.value !== ""){
+			try{
+				this.array_data = JSON.parse(this.json.value);
+				// Verificar que array_data sea realmente un array
+				if(Array.isArray(this.array_data)){
+					this.array_data.forEach((data)=>{
+						this.addRow(data);
+					});
+				} else {
+					// Si no es un array, inicializarlo como uno vacío
+					console.warn("El valor parseado no es un array, inicializando como array vacío");
+					this.array_data = [];
+				}
+			} catch (e){
+				console.error("Hubo un error", e);
+				// En caso de error, asegurarse de que array_data sea un array vacío
+				this.array_data = [];
+			}
+		} else {
+			// Si no hay valor, inicializar como array vacío
+			this.array_data = [];
 		}
 	}
 
@@ -26,7 +43,7 @@ export class TableManager{
 			data.push(input.value);
 			input.value = ''
 		});
-		this.array_data.push((data))
+		this.array_data.push(data)
 
 		
 		this.addRow(data);
